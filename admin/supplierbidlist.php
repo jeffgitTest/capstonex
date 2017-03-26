@@ -45,7 +45,6 @@ if (!isset($_SESSION["manager"])) {
         $price = "";
 
         $allowed_ext = array ('pdf', 'doc');
-        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         mysql_query("INSERT INTO contract (bid, user_id, type, validity, active) VALUES ('$bids_id', '$users_id', 'supplier', '$expiry', 1)");
 

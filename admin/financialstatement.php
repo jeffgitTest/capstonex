@@ -92,30 +92,28 @@ if (!isset($_SESSION["manager"])) {
 	  ?>
 
 	</tbody>
+	</table>
 
-      </table>
-
-      <table class="table table-striped">
-
-      <thead>
-		<th><b>Revenue:</b></th>
+	<table class="table table-striped">
+        <thead>
+		<th><b>Expenses:</b></th>
 	</thead>
 
 	<tbody>
 		
 		<?php 
 
-	 	$sql = mysql_query("SELECT sum(mc_gross) FROM transactions");
+	 	$sql = mysql_query("SELECT sum(price) FROM supplies");
 		$requestCount = mysql_num_rows($sql);
 
 		if ($requestCount > 0) {
 		     while ($row = mysql_fetch_array($sql)) {
 
-		     $totalamount = $row['sum(mc_gross)'];
+		     $totalamount = $row['sum(price)'];
 
 		      echo "
 		        <tr>
-		          <td ><b>Sales:</b></td>
+		          <td style='width: 63.5%;'><b>Supplies:</b></td>
 		          <td><b>$totalamount</b></td>
 		        </tr>
 
@@ -126,10 +124,8 @@ if (!isset($_SESSION["manager"])) {
 	  ?>
 
 	</tbody>
+	</table>
 
-
-
-      </table>
 
       <table class="table table-striped">
 
@@ -152,7 +148,7 @@ if (!isset($_SESSION["manager"])) {
 		}
 
 		
-		$sql2 = mysql_query("SELECT SUM(amount) AS total_expenses FROM expenses");
+		$sql2 = mysql_query("SELECT SUM(price) AS total_expenses FROM supplies");
 		$requestCount2 = mysql_num_rows($sql2);
 
 		if ($requestCount2 > 0) {
@@ -167,7 +163,7 @@ if (!isset($_SESSION["manager"])) {
 		
 		echo "
 		        <tr>
-		          <td><b>Net Income:</b></td>
+		          <td style='width: 63.5%;'><b>Net Income:</b></td>
 		          <td><b>$netincome</b></td>
 		        </tr>
 

@@ -115,9 +115,9 @@
 		<div class="form-group col-sm-offset-3 col-sm-6">
 			<label for="product-name">Attachment (.PDF, .DOC):</label>
 			<input type="file" id="file" accept=".pdf" name="file" class="form-control" required="required" multiple />
-		</divform					<br/>
-		<div class="form-group">
-			<input type="submit" name="submit" class="button" value="Submit">
+		</div>				<br/>
+		<div class="form-group col-sm-offset-3 col-sm-6">
+			<input type="submit" name="submit" class="btn btn-default" value="Submit">
 		</div>
 
 					
@@ -188,7 +188,7 @@ INNER JOIN uploaded_supp_bid_file ON uploaded_supp_bid_file.bid_id=bids.id WHERE
 				<input type='hidden' name='id' value='$bids_id' />
 				<input type='hidden' name='filename' value='$contractfilename' />
 
-				<input type='submit' name='submit' value='View Contract' $disabled />
+				<input class='btn btn-default' type='submit' name='submit' value='View Contract' $disabled />
 			</form>
           </td>
           <td>
@@ -197,7 +197,7 @@ INNER JOIN uploaded_supp_bid_file ON uploaded_supp_bid_file.bid_id=bids.id WHERE
 				<input type='hidden' name='id' value='$bids_id' />
 				<input type='hidden' name='type' value='supplier' />
 
-				<input type='submit' name='submit1' value='Signed Contract' $disabled />
+				<input class='btn btn-default' type='submit' name='submit1' value='Signed Contract' $disabled />
 			</form>
           </td>
         </tr>
