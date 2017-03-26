@@ -72,9 +72,9 @@
 </head>
 <body>
 
-	<?php include 'template/top.php'; ?>
+	<?php include 'template/style2.php'; ?>
 
-    <?php include 'template/header.php'; ?>
+    <?php include 'template/header2.php'; ?>
 	
 		<form action="authorbid.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
 		<fieldset>
