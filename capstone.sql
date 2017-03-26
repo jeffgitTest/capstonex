@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2017 at 04:14 PM
+-- Generation Time: Mar 26, 2017 at 06:12 PM
 -- Server version: 1.0.110
 -- PHP Version: 5.3.10
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `bids` (
   `active` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `bids`
@@ -110,7 +110,8 @@ CREATE TABLE IF NOT EXISTS `bids` (
 
 INSERT INTO `bids` (`id`, `type`, `active`, `created_date`) VALUES
 (53, 'author', 0, '2017-03-20 17:20:46'),
-(54, 'supplier', 0, '2017-03-20 17:22:53');
+(54, 'supplier', 0, '2017-03-20 17:22:53'),
+(55, 'supplier', 0, '2017-03-26 16:29:25');
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `contract` (
   `active` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `contract`
@@ -227,7 +228,9 @@ CREATE TABLE IF NOT EXISTS `contract` (
 
 INSERT INTO `contract` (`id`, `bid`, `user_id`, `type`, `validity`, `active`, `created_date`) VALUES
 (13, 53, 6, 'author', '03/31/2017', 0, '2017-03-20 17:21:32'),
-(14, 54, 3, 'supplier', '03/31/2017', 0, '2017-03-20 17:23:24');
+(14, 54, 3, 'supplier', '03/31/2017', 0, '2017-03-20 17:23:24'),
+(15, 55, 6, 'supplier', '03/31/2017', 1, '2017-03-26 16:47:21'),
+(16, 55, 6, 'supplier', '03/31/2017', 1, '2017-03-26 16:48:47');
 
 -- --------------------------------------------------------
 
@@ -504,14 +507,15 @@ CREATE TABLE IF NOT EXISTS `supplier_bid` (
   `status` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `supplier_bid`
 --
 
 INSERT INTO `supplier_bid` (`id`, `bid_id`, `supplier_id`, `product_bid`, `details`, `price`, `status`, `created_date`) VALUES
-(15, 54, 3, '222', '222', '222', 1, '2017-03-20 17:22:54');
+(15, 54, 3, '222', '222', '222', 1, '2017-03-20 17:22:54'),
+(16, 55, 6, 'Martilyo', 'dasd', '600', 1, '2017-03-26 16:29:25');
 
 -- --------------------------------------------------------
 
@@ -529,14 +533,16 @@ CREATE TABLE IF NOT EXISTS `supplies` (
   `active` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `supplies`
 --
 
 INSERT INTO `supplies` (`id`, `bid_id`, `supplier_id`, `product_name`, `details`, `price`, `active`, `created_date`) VALUES
-(3, 54, 15, '222', '222', '222', 1, '2017-03-20 17:23:25');
+(3, 54, 15, '222', '222', '222', 1, '2017-03-20 17:23:25'),
+(4, 55, 16, 'Martilyo', 'dasd', '600', 1, '2017-03-26 16:47:21'),
+(5, 55, 16, 'Martilyo', 'dasd', '600', 1, '2017-03-26 16:48:48');
 
 -- --------------------------------------------------------
 
@@ -576,7 +582,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `txn_id` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `transactions`
@@ -588,7 +594,9 @@ INSERT INTO `transactions` (`id`, `user_id`, `product_id_array`, `payer_email`, 
 (6, 3, '9', 'capstoneTest@gmail.com', 'test', 'account', '03', '09', '2017', '2017-03-10 03:34:28', '1100.00', '', 'capstoneTest-facilitator@gmail.com', 'instant', 'Cancelled', 'cart', 'VERIFIED', '001', 'San Jose', 'CA', '50002', 'US', '', 'UNVERSIONED', 'AiPC9BjkCyDFQXbSkoZcgqH3hpacAa7r78Sn4-tqV5l1GoHXpw9X0XSk', 'TUZBW7N55UVH2', 'PHP', '550.00', '053621837E670284T', 2),
 (11, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 03:32:03', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1773052396', 1),
 (12, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 03:46:55', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1112809937', 1),
-(13, 6, '9', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 04:13:17', '550', '', '', 'cod', 'Completed', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '550', '2002881133', 1);
+(13, 6, '9', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 04:13:17', '550', '', '', 'cod', 'Completed', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '550', '2002881133', 1),
+(14, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-26 17:19:30', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1184942234', 1),
+(15, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-26 17:20:04', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1640458798', 1);
 
 -- --------------------------------------------------------
 
@@ -682,14 +690,15 @@ CREATE TABLE IF NOT EXISTS `uploaded_supp_bid_file` (
   `active` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `uploaded_supp_bid_file`
 --
 
 INSERT INTO `uploaded_supp_bid_file` (`id`, `bid_id`, `supplier_id`, `file_name`, `ext`, `active`, `created_date`) VALUES
-(15, 54, 3, 'Practical Exam.pdf', 'pdf', 0, '2017-03-20 17:22:54');
+(15, 54, 3, 'Practical Exam.pdf', 'pdf', 0, '2017-03-20 17:22:54'),
+(16, 55, 6, 'contracttemplate-author-contract.pdf', 'pdf', 0, '2017-03-26 16:29:25');
 
 -- --------------------------------------------------------
 
