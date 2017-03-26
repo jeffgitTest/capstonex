@@ -36,22 +36,40 @@
 
 	<title>Bid Portal</title>
 
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+-->
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.css" rel="stylesheet">
 
 </head>
 <body>
 
-	<?php include 'template/top.php'; ?>
+	<?php include 'template/style2.php'; ?>
 
-    <?php include 'template/header.php'; ?>
+    <?php include 'template/header2.php'; ?>
+
+    <div class="container">
 	
 		<form action="authorbid.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
-		<fieldset>
-			 <div class="row cells2">
-			 	<div class="cell">
 		
-					<h4>Author Bid Portal</h4>
-					 <hr class="bg-magenta">
-					 		 <br/>
+		
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label>Supplier Bid Portal</label>
+					</div>
+
+					<div class="form-group col-sm-offset-3 col-sm-6">
 
 					 <?php 
 
@@ -80,20 +98,32 @@
 
 	$sql = mysql_query("INSERT INTO uploaded_supp_bid_file (bid_id, supplier_id, file_name, ext, active) VALUES ('$bidid', '$supplierid', '$file_name', '$file_ext', 1)");
 
-	echo "<h4>Supplier bid successfully sent! Please wait for admin approval.</h3>";
+	echo "<label>Supplier bid successfully sent! Please wait for admin approval.</label>";
 
 
  ?>
 
+ 	</div>
+
 					
-					
-					
-				</div>
-			</div>
-		</fieldset>
 		</form>
 
-		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		</div>
+
+		<?php include 'template/footer.php'; ?>
+
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+ <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+-->
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
 
 	
 </body>

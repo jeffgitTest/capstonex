@@ -165,7 +165,6 @@ function ajax_contact(){
   <li><a href="#profile" data-toggle="tab">Change Password</a></li>
    <li><a href="#cancel" data-toggle="tab">Order</a></li>
    <li><a href="#board" data-toggle="tab">Message</a></li>
-   <li><a href="#transhistory" data-toggle="tab">Transaction History</a></li>
 </ul>
 <!-- Tab panes -->
 <div class="tab-content">
@@ -760,6 +759,70 @@ if ($productCount2 > 0)
     <script src="js/jquery-3.2.0.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/modern-business.js"></script>
+
+    <script type="text/javascript">
+  
+  $(document).ready(function () {
+
+    $('.btn-checkout').click(function () {
+
+      var selectedPayment = $('.modepayment').val();
+      var paypal = $('.paypal').val();
+
+      var mode = (selectedPayment === 'shipping') ? paypal: 'codform.php';
+
+      $('#checkoutform').attr('action', mode);
+      $('#checkoutform').submit();
+
+    });
+    
+  });
+
+</script>
+
+
+
+<!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Choose Payment Method</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                      
+                    <div class="form-group col-sm-offset-3 col-sm-6">
+          
+                      <label for="mode">Mode of Payment:</label>
+                    <select class="form-control modepayment" name="modepayment">
+                      <option value="shipping">Paypal</option>
+                      <option value="cod">Cash On Delivery</option>
+                    <select>
+  
+
+                    </div>
+
+                    <div class="form-group col-sm-offset-3 col-sm-6">
+           
+                      <button class="btn btn-primary btn-checkout" data-dismiss="modal">Proceed Checkout</button>  
+
+                    </div>
+                    
+
+                  </div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div> 
+              
+            </div>
+          </div>
 
   </body>
 </html>

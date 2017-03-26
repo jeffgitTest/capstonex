@@ -161,19 +161,12 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 								
 							}
 
-	$mode1 = $_SESSION['modepayment'];
-	$mode = "";
-
-	if ($mode1 == 'shipping') {
-		$mode = $option;
-	} else {
-		$mode = "codform.php";
-	}
 	
 	$added='products added to cart';
 	// Start PayPal Checkout Button  
 	$added='already added to the cart';       
-	$pp_checkout_btn .= '<form action="'.$mode.'" method="post">
+	$pp_checkout_btn .= '<form id="checkoutform" action="" method="post">
+	<input type="hidden" value="'.$option.'" class="paypal" />
     <input type="hidden" name="cmd" value="_cart">
     <input type="hidden" name="upload" value="1">
     <input type="hidden" name="business" value="'.$merchant.'">';
@@ -276,11 +269,17 @@ $i++;
 	<input type="hidden" name="cancel_return" value="'.$base_url.'/user.php">
 	<input type="hidden" name="lc" value="PHP">
 	<input type="hidden" name="currency_code" value="PHP">
-	<input type="submit" class="btn btn-primary pull-right" name="submit" value="Proceed Checkout">
+	
+	<button class="btn btn-primary pull-right" data-toggle="modal" onclick="return false;" data-target="#myModal">Choose Payment Method</button>
 	</form>
 	';
+
+	// <input type="submit" class="btn btn-primary pull-right" name="submit" value="Proceed Checkout">
 
 
 }
 session_write_close();
 ?>
+
+
+

@@ -46,13 +46,30 @@
 
 	<title>COD</title>
 
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+-->
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.css" rel="stylesheet">
+
 
 </head>
 <body>
 
-	<?php include 'template/top.php'; ?>
+	<?php include 'template/style2.php'; ?>
 
-    <?php include 'template/header.php'; ?>
+    <?php include 'template/header2.php'; ?>
 	
 		<form action="submitcod.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
 
@@ -62,49 +79,40 @@
 			 <div class="row cells2">
 			 	<div class="cell">
 		
-					<h4>Cash on delivery Form</h4>
-					 <hr class="bg-magenta">
-					 		 <br/>
+
+					 		 <div class="form-group col-sm-offset-3 col-sm-6">
+						<label>Cash on delivery Forml</label>
+					</div>
 					
-					<div class="form-group">
-						<div class="input-control">
-							<label for="product-name">Address:</label>
-							<input type="text" id="product-name" value="<?php echo $address; ?>" class="input-control" name="address" required="required">
-						</div>
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label for="product-name">Address:</label>
+						<input type="text" id="product-name" value="<?php echo $address; ?>" class="form-control" name="address" required="required">
 					</div>
 					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="details">Province:</label>
-							<input type="text" id="details" value="<?php echo $province; ?>" class="input-control" name="province" required="required">
-						</div>
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label for="details">Province:</label>
+						<input type="text" id="details" value="<?php echo $province; ?>" class="form-control" name="province" required="required">form
 					</div>
 					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="genre">City / Municipality:</label>
-							<input type="text" id="genre" value="<?php echo $city; ?>" class="input-control" name="city" required="required">
-						</div>
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label for="genre">City / Municipality:</label>
+						<input type="text" id="genre" value="<?php echo $city; ?>" class="form-control" name="city" required="required">
 					</div>
 					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="price">Zip Code:</label>
-							<input type="text" id="price" value="<?php echo $zip; ?>" class="input-control" name="zip" required="required">
-						</div>
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label for="price">Zip Code:</label>
+						<input type="text" id="price" value="<?php echo $zip; ?>" class="form-control" name="zip" required="required">
 					</div>
 					
 					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="price">Mobile Number:</label>
-							<input type="text" id="price" value="<?php echo $mobile; ?>" class="input-control" name="mobile" required="required">
-						</div>
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<label for="price">Mobile Number:</label>
+						<input type="text" id="price" value="<?php echo $mobile; ?>" class="form-control" name="mobile" required="required">
 					</div>
 					
 					<br/>
-					<div class="form-group">
-						<input type="submit" name="submit" class="button" value="Submit">
+					<div class="form-group col-sm-offset-3 col-sm-6">
+						<input type="submit" name="submit" class="btn btn-default" value="Submit">
 					</div>
 
 					
@@ -115,7 +123,20 @@
 
 		
 
-		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		<?php include 'template/footer.php'; ?>
+
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+ <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+-->
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
 
 	
 </body>

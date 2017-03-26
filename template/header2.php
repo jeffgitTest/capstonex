@@ -82,7 +82,7 @@
 				echo '
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="user.php">'.$fname.'<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="user.php">'.@$fname.'<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="user.php">Shopping Cart</a></li>
             <li><a href="include/logout.php">Logout</a></li> 

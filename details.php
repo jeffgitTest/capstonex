@@ -150,12 +150,6 @@ if (isset($_GET['pid'])) {
         <input name="pid" type="hidden" value="'.$pid.'" />
 	    <button type="submit" class="btn btn-success btn-lg" name="addcart">Add to Cart </button>
 	    <br>
-		 <br>	
-	    Mode of payment: <select class="" name="modepayment">
-	    	<option value="shipping">Paypal</option>
-	    	<option value="cod">Cash On Delivery</option>
-	    <select>		
-		 </form>
 		 </div>
 		</div>	
 		</div>
