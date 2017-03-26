@@ -465,77 +465,7 @@ else
 }
 
 ?>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th width="15%">TXN : number</th>
-        <th width="20%">Customer</th>
-        <th width="14%">Status</th>
-        <th width="22%">Date Purchased</th>
-        <th width="13%">Payment</th>
-        <th width="13%">Payment Type</th>
-      </tr>
-    </thead>
-    <tbody>
 
-<?php
-$purchased_rep = '';
-
-    $sql = mysql_query("SELECT * FROM transactions WHERE payment_status='$stat' ORDER BY id DESC limit 5");
-    $productCount = mysql_num_rows($sql); // count the output amount
-    if ($productCount > 0) {
-      while($row = mysql_fetch_array($sql)){ 
-        $id = $row['id'];
-        $date = $row['payment_date'];
-        $gross = $row["mc_gross"];
-        $txn_id = $row["txn_id"];
-        $txn_type = $row["txn_type"];
-        $firstname = $row["first_name"];
-        $lastname = $row["last_name"];
-        $email= $row["payer_email"];
-        $payer_status = $row["payer_status"];
-        $street = $row["address_street"];
-        $city = $row["address_city"];
-        $state = $row["address_state"];
-        $country = $row["address_country"];
-        $currency = $row["mc_currency"]; 
-        $payment_status= $row["payment_status"]; 
-        // $status_detail= $row["status_detail"]; 
-        $month= $row["month"];
-        $day= $row["day"];
-        $year= $row["year"];
-        $cartTotal2="";
-        $datepayment = strftime("%b %d, %Y", strtotime($row["payment_date"]));
-
-        $payment_type = ($row['payment_type'] == 'cod') ? 'COD' : 'Paypal';
-
-        $updatestat = "";
-
-        if ($payment_status == 'Cancelled' || $payment_status == 'Completed') {
-          $updatestat = '';
-        } else {
-          $updatestat = ' <a  data-toggle="modal" href="#status'.$id.'">Update Status</a>';
-        }
-
-        $purchased_rep .= '<tr>
-          <td>$txn_id</td>
-          <td>'.$firstname.' '.$lastname.'</td>
-          <td>$updatestat</td>
-          <td>$txn_id</td>
-          <td>$txn_id</td>
-          <td>$txn_id</td>
-        </tr>';
-      }
-    }
-
-
-?>
-
-
-    </tbody>
-  </table>
-</div>
 <div class="table-responsive">
 <table class="table table-striped">
           <thead>
@@ -781,6 +711,242 @@ $mail->AddAddress($address, "Clothing Line Apparel");
 								
 								
 ?>
+
+<h3>PURCHASE REPORT OVERVIEW</h3>
+      <div class="row">
+            <div class="col-lg-10">
+              <button onclick="window.location='excel_download.php?orders=print'" target="_blank" class="btn btn-default">Download</button>
+           </div>
+           <div class="col-lg-2 pull-right">
+              <button onclick="window.location='orders.php'" class="btn btn-info">View All</button>
+           </div>
+       </div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="15%">TXN : number</th>
+        <th width="20%">Customer</th>
+        <th width="14%">Status</th>
+        <th width="22%">Date Purchased</th>
+        <th width="13%">Payment</th>
+        <th width="13%">Payment Type</th>
+      </tr>
+    </thead>
+    <tbody>
+
+<?php
+$purchased_rep = '';
+
+    $sql = mysql_query("SELECT * FROM transactions WHERE payment_status='Completed' ORDER BY id DESC limit 5");
+    $productCount = mysql_num_rows($sql); // count the output amount
+    if ($productCount > 0) {
+      while($row = mysql_fetch_array($sql)){ 
+        $id = $row['id'];
+        $date = $row['payment_date'];
+        $gross = $row["mc_gross"];
+        $txn_id = $row["txn_id"];
+        $txn_type = $row["txn_type"];
+        $firstname = $row["first_name"];
+        $lastname = $row["last_name"];
+        $email= $row["payer_email"];
+        $payer_status = $row["payer_status"];
+        $street = $row["address_street"];
+        $city = $row["address_city"];
+        $state = $row["address_state"];
+        $country = $row["address_country"];
+        $currency = $row["mc_currency"]; 
+        $payment_status= $row["payment_status"]; 
+        // $status_detail= $row["status_detail"]; 
+        $month= $row["month"];
+        $day= $row["day"];
+        $year= $row["year"];
+        $cartTotal2="";
+        $datepayment = strftime("%b %d, %Y", strtotime($row["payment_date"]));
+
+        $payment_type = ($row['payment_type'] == 'cod') ? 'COD' : 'Paypal';
+
+        $updatestat = "";
+
+        if ($payment_status == 'Cancelled' || $payment_status == 'Completed') {
+          $updatestat = '';
+        } else {
+          $updatestat = ' <a  data-toggle="modal" href="#status'.$id.'">Update Status</a>';
+        }
+
+        $purchased_rep .= '<tr>
+          <td>'.$txn_id.'</td>
+          <td>'.$firstname.' '.$lastname.'</td>
+          <td>'.$payment_status.'</td>
+          <td>'.$datepayment.'</td>
+          <td>&#8369; '.$gross.'</td>
+          <td>'.$payment_type.'</td>
+        </tr>';
+      }
+    }
+    echo $purchased_rep;
+?>
+    </tbody>
+  </table>
+</div>
+
+<h3>PRODUCT REPORT OVERVIEW</h3>
+      <div class="row">
+            <div class="col-lg-10">
+              <button onclick="window.location='excel_download.php?prod_rep=print'" target="_blank" class="btn btn-default">Download</button>
+           </div>
+           <div class="col-lg-2 pull-right">
+              <button onclick="window.location='list.php'" class="btn btn-info">View All</button>
+           </div>
+       </div>
+
+<div class="table-responsive">
+        <table class="table table-striped">
+          <thead>    
+            <th>Image</th>
+            <th>Product name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Display</th>
+            <th>Status</th>
+          </thead>
+        <tbody>
+<?php
+    $prod_rep = '';
+    $sql = mysql_query("SELECT * FROM products ORDER BY id DESC limit 5");
+    $productCount2 = mysql_num_rows($sql); // count the output amount
+    if ($productCount2 > 0) {
+      while($row = mysql_fetch_array($sql)){ 
+        $id = $row["id"];
+        $prod_title = $row["product_name"];
+        $price = $row["price"];
+        $prod_desc  = $row["details"];
+        $ext  = $row["ext"];
+        $stock=$row['stock'];
+        $category = $row["category"];
+        $sub_category = $row["sub_category"];
+        $display = $row["status"];
+
+        if($stock <=10 && $stock > 0){
+          $s_status = '<span style="color: #F00">Critical &nbsp;<a href="list.php?productid='.$id.'" title="Update Stock"><span class="icon-pencil"></a></span>';
+        }else if($stock == 0){
+          $s_status = '<span style="color: #333">0 Stock &nbsp;<a title="Update Stock" href="list.php?productid='.$id.'"><span class="icon-pencil"></a></span>';
+        }else{
+          $s_status= '<span style="color: #090">Sufficient</span>';
+        }
+        $prod_rep .= '<tr>
+          <td>'.'<img src="../img/product_image/'.$id.'.'.$ext.'" height="50"  width="50"/>'.'</td>
+          <td>'.$prod_title.'</td>
+          <td>'.$price.'</td>
+          <td>'.$stock.'</td>
+          <td>'.$display.'</td>
+          <td>'.$s_status.' </td>
+          </tr>';
+      }
+    }
+    echo $prod_rep;
+    ?>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+<h3>INVENTORY REPORT OVERVIEW</h3>
+      <div class="row">
+            <div class="col-lg-10">
+              <button onclick="window.location='excel_download.php?inventory=print'" target="_blank" class="btn btn-default">Download</button>
+           </div>
+           <div class="col-lg-2 pull-right">
+              <button onclick="window.location='inventory.php'" class="btn btn-info">View All</button>
+           </div>
+       </div>
+
+<div class="table-responsive">
+        <table class="table table-striped">
+          <thead>    
+            <th>Product name</th>
+            <th>Sold</th>
+            <th>Stock Now</th>
+            <th>Stock Before</th>
+            <th>Status</th>
+          </thead>
+        <tbody>
+<?php
+$sql = mysql_query("SELECT products.*, critical_level.product_id, critical_level.crit_level FROM products INNER JOIN critical_level ON products.id=critical_level.product_id ORDER BY product_name ASC");
+$productCount = mysql_num_rows($sql); // count the output amount
+$count = 0;
+
+$inventory_rep = '';
+$productid = "";
+$critLevel = "";
+
+if ($productCount > 0) {
+  while($row = mysql_fetch_array($sql)){ 
+      $id = $row['id'];
+      $pname = $row["product_name"];
+
+      $productid = $row['product_id'];
+      $critLevel = $row['crit_level'];
+
+      $stock_query = mysql_query("SELECT qty_added as stock, SUM(qty_added) as sold FROM product_history WHERE pid = $id ORDER BY Date asc limit 1");
+      $stock_query_count = mysql_num_rows($stock_query); // count the output amount
+      $previous_stock='empty';
+      $lessted_value='empty';
+      if ($stock_query_count > 0) {
+      // output data of each row
+        while($stock_row = mysql_fetch_array($stock_query)) {
+          if(!empty($stock_row['stock'])){
+            $previous_stock = $stock_row['stock'];
+          }
+          if(!empty($stock_row['sold'])){
+            $lessted_value = $stock_row['sold'];
+          }
+        }
+      } 
+      // if(!empty($result->fetch_row()['stock'])){
+      //   $previous_stock = $stock_query->fetch_row()[0];
+      // }
+      // if(!empty($stock_query->fetch_row()['sold'])){
+      //   $lessted_value = $stock_query->fetch_row()[1];
+      // }
+       // $lessted_value= $row["lessted_value"];
+        $current_stock = $row["stock"];
+         // $previous_stock = $row["previous stock"];
+          // $date = $row["date"];
+
+      
+          if($current_stock <= $critLevel){
+         $status = '<span style="color: #F00">Critical</span>';
+         }
+         else if($current_stock == 0){
+            $status = '<span style="color: #333">0 Stock</span>';
+           }
+           else{
+             $status = '<span style="color: #090">Sufficient</span>';
+             }
+           $inventory_rep .= '
+            <tr>
+                <td>'.$pname.'</td>
+              <td>'.$lessted_value.'</td>
+
+              <td>'.$current_stock.'</td>
+               <td >'.$previous_stock.'</td>
+              <td>'.$status.'</td>
+              </tr>
+              ';
+           }
+  }
+  echo $inventory_rep;
+  
+?>
+    </tbody>
+  </table>
+</div>
+
  <h3>USERS REPORT OVERVIEW</h3>
       <div class="row">
             <div class="col-lg-10">
