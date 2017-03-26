@@ -36,7 +36,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav side-nav">
+          <ul class="nav navbar-nav side-nav mt31">
             <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> DASHBOARD</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>PRODUCTS<b class="caret"></b></a>
@@ -112,7 +112,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php"><img src="../img/logo.png" /></a>
+          <a class="navbar-brand" href="index.php"><img src="../img/logo.png" class="mh-w" /></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

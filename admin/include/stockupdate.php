@@ -64,18 +64,50 @@ if(isset($_GET['success'])){
       </div>
     </fieldset>       
 <input type="submit" name="update" class="btn btn-primary btn-lg pull-left" value="Add Stock">
-	
 
 </form>
+<a class="btn btn-info btn-lg pull-left" data-toggle="modal" data-target="#ModalDeduct" ui-sref="deduct">Deduct</a>
+<!-- <button class="btn btn-info btn-lg pull-left" data-toggle="modal" data-target="#ModalDeduct'">Deduct</button> -->
+
+
+<div class="modal fade" id="ModalDeduct" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Details for deduction</h4>
+      </div>
+      <div class="modal-body">
+      		<form>
+      			
+      		</form>
+    		<div class="row thead">
+               <div class="col-sm-4 col-md-auto">History ID</div>
+               <div class="col-sm-4 col-md-auto">Modified Quantity</div>
+               <div class="col-sm-4 col-md-auto">Date Modified</div>
+            </div>
+    		<div class="row">
+    			<div class="col-sm-4 col-md-auto">yes</div>
+                <div class="col-sm-4 col-md-auto">no Quantity</div>
+                <div class="col-sm-4 col-md-auto">yes Modified</div>
+             </div>
+    	</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 	
 	 <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+   <!--  // <script src="js/jquery-1.10.2.js"></script>
+    // <script src="js/bootstrap.js"></script> -->
 
     <!-- Page Specific Plugins -->
-    <script src="js/raphael-min.js"></script>
-    <script src="js/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
+   <!--  // <script src="js/raphael-min.js"></script>
+    // <script src="js/morris-0.4.3.min.js"></script>
+    // <script src="js/morris/chart-data-morris.js"></script>
+    // <script src="js/tablesorter/jquery.tablesorter.js"></script>
+    // <script src="js/tablesorter/tables.js"></script> -->
 <!-- <input type="submit" name="update" class="btn btn-primary btn-lg pull-left" value="Deduct Stock"> -->
+

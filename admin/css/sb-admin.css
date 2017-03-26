@@ -23,6 +23,15 @@ body {
   padding: 5px 15px;
 }
 
+.mt31{
+  margin-top: 31px;
+}
+
+.mh-w{
+    max-height: 46px !important;
+    width: auto !important;
+}
+
 /* Nav Messages */
 
 .messages-dropdown .dropdown-menu .message-preview .avatar,

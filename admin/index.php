@@ -232,7 +232,7 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=10 and stock>0 ORDER B
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="css/sb-admin.css" rel="stylesheet">-->
+    <link href="css/sb-admin.css" rel="stylesheet">
    <!-- <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="css/morris-0.4.3.min.css">
@@ -274,7 +274,7 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=10 and stock>0 ORDER B
                     <i class="fa fa-comments fa-5x"></i>
                   </div>
                   <div class="col-xs-6 text-right">
-                    <p class="announcement-heading">&#8369;<?php echo $todaySales?></p>
+                    <p class="announcement-heading">&#8369;<?php echo $todaySales;?></p>
                     <p class="announcement-text">Today  Sales</p>
                   </div>
                 </div>

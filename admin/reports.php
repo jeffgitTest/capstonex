@@ -231,11 +231,11 @@ else {
 }
 ?>
 <?php
-	$tsql = mysql_query("SELECT * FROM transactions ORDER BY id");
+	$tsql = mysql_query("SELECT * FROM transactions ORDER BY id limit 5");
 	$transactions = mysql_num_rows($tsql); // Counting the database product
 	
 //Product status
-    $sql = mysql_query("SELECT * FROM products ORDER BY id");
+    $sql = mysql_query("SELECT * FROM products ORDER BY id limit 5");
 	$prodCount = mysql_num_rows($sql); // Counting the database product
 	
 	$sql = mysql_query("SELECT * FROM products WHERE stock < 11 AND stock > 0");
@@ -392,7 +392,7 @@ if (isset($_POST['submit'])){
     $syear = date('Y', $startD);
     
      $perday= mysql_query("SELECT sum(mc_gross), sum(mc_fee), day, month, year, product_id_array, COUNT(day) FROM transactions   WHERE (month>=$smonth and month<=$emonth) and (year>=$syear and year<=$eyear)
-            and (day>=$sday and day<=$eday)GROUP BY day ORDER BY id DESC");
+            and (day>=$sday and day<=$eday)GROUP BY day ORDER BY id DESC limit 5");
     
     if (mysql_num_rows($perday)==0){
         $output = '<tr><td colspan="5"  class="alert alert-error">No data found</td></tr>';
@@ -463,7 +463,79 @@ else
         
     }
 }
+
 ?>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="15%">TXN : number</th>
+        <th width="20%">Customer</th>
+        <th width="14%">Status</th>
+        <th width="22%">Date Purchased</th>
+        <th width="13%">Payment</th>
+        <th width="13%">Payment Type</th>
+      </tr>
+    </thead>
+    <tbody>
+
+<?php
+$purchased_rep = '';
+
+    $sql = mysql_query("SELECT * FROM transactions WHERE payment_status='$stat' ORDER BY id DESC limit 5");
+    $productCount = mysql_num_rows($sql); // count the output amount
+    if ($productCount > 0) {
+      while($row = mysql_fetch_array($sql)){ 
+        $id = $row['id'];
+        $date = $row['payment_date'];
+        $gross = $row["mc_gross"];
+        $txn_id = $row["txn_id"];
+        $txn_type = $row["txn_type"];
+        $firstname = $row["first_name"];
+        $lastname = $row["last_name"];
+        $email= $row["payer_email"];
+        $payer_status = $row["payer_status"];
+        $street = $row["address_street"];
+        $city = $row["address_city"];
+        $state = $row["address_state"];
+        $country = $row["address_country"];
+        $currency = $row["mc_currency"]; 
+        $payment_status= $row["payment_status"]; 
+        // $status_detail= $row["status_detail"]; 
+        $month= $row["month"];
+        $day= $row["day"];
+        $year= $row["year"];
+        $cartTotal2="";
+        $datepayment = strftime("%b %d, %Y", strtotime($row["payment_date"]));
+
+        $payment_type = ($row['payment_type'] == 'cod') ? 'COD' : 'Paypal';
+
+        $updatestat = "";
+
+        if ($payment_status == 'Cancelled' || $payment_status == 'Completed') {
+          $updatestat = '';
+        } else {
+          $updatestat = ' <a  data-toggle="modal" href="#status'.$id.'">Update Status</a>';
+        }
+
+        $purchased_rep .= '<tr>
+          <td>$txn_id</td>
+          <td>'.$firstname.' '.$lastname.'</td>
+          <td>$updatestat</td>
+          <td>$txn_id</td>
+          <td>$txn_id</td>
+          <td>$txn_id</td>
+        </tr>';
+      }
+    }
+
+
+?>
+
+
+    </tbody>
+  </table>
+</div>
 <div class="table-responsive">
 <table class="table table-striped">
           <thead>
@@ -511,7 +583,7 @@ $day = date('d');
 $year = date('Y');
 $today = date('M j, Y');
 $output = "";
-$todayQuery= mysql_query("SELECT * FROM transactions ORDER BY id");
+$todayQuery= mysql_query("SELECT * FROM transactions ORDER BY id limit 5");
 			
 			if (mysql_num_rows($todayQuery)==0){
          $output .= "<tr ><td colspan='5'><div class='alert alert-warning'>No order for this date ($month/$day/$year)</div></td></tr>";
