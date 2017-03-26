@@ -68,6 +68,23 @@
 
 	<title>Bid Portal</title>
 
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+-->
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -75,67 +92,54 @@
 	<?php include 'template/style2.php'; ?>
 
     <?php include 'template/header2.php'; ?>
-	
-		<form action="authorbid.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
-		<fieldset>
-			 <div class="row cells2">
-			 	<div class="cell">
-		
-					<h4>Author Bid Portal</h4>
-					 <hr class="bg-magenta">
-					 		 <br/>
-					
-					<div class="form-group">
-						<div class="input-control">
-							<label for="product-name">Title:</label>
-							<input type="text" id="product-name" class="input-control" name="name" required="required">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="details">Details:</label>
-							<input type="text" id="details" class="input-control" name="details" required="required">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="author">Author:</label>
-							<input type="text" id="author" class="input-control" name="author" required="required">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="genre">Genre:</label>
-							<input type="text" id="genre" class="input-control" name="genre" required="required">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="price">Projected Price:</label>
-							<input type="text" id="price" class="input-control" name="price"required="required">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="product-name">Attachment (.PDF, .DOC):</label>
-							<input type="file" id="file" accept=".pdf" name="file" class="input-control" required="required" multiple />
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<input type="submit" name="submit" class="button" value="Submit">
-					</div>
 
-					
-				</div>
+    <!-- <h4>Author Bid Portal</h4> -->
+
+    <div class="container">
+    	
+    	<form action="authorbid.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
+
+    		<div class="form-group col-sm-offset-3 col-sm-6">
+    			
+    			<label for="product-name">Title:</label>
+				<input type="text" id="product-name" class="form-control" name="name" required="required">
+
+    		</div>
+
+    		<div class="form-group col-sm-offset-3 col-sm-6">
+    			<label for="details">Details:</label>
+				<input type="text" id="details" class="form-control" name="details" required="required">
 			</div>
-		</fieldset>
-		</form>
+			
+			<div class="form-group col-sm-offset-3 col-sm-6">
+				<label for="author">Author:</label>
+				<input type="text" id="author" class="form-control" name="author" required="required">
+			</div>
+
+			<div class="form-group col-sm-offset-3 col-sm-6">
+				<label for="genre">Genre:</label>
+				<input type="text" id="genre" class="form-control" name="genre" required="required">
+			</div>
+			<div class="form-group col-sm-offset-3 col-sm-6">
+				<label for="price">Projected Price:</label>
+				<input type="text" id="price" class="form-control" name="price" required="required">
+			</div>
+
+			<div class="form-group col-sm-offset-3 col-sm-6">
+				<label for="product-name">Attachment (.PDF):</label>
+				<input type="file" id="file" accept=".pdf" name="file" class="form-control" required="required" multiple />
+			</div>
+				<br/>
+				<div class="form-group col-sm-offset-3 col-sm-6">
+					<input type="submit" name="submit" class="btn btn-default" value="Submit">
+				</div>
+		
+    	</form>
+
+
+    </div>
+	
+		
 
 		<hr class="bg-magenta">
 
@@ -207,7 +211,7 @@ INNER JOIN uploaded_bid_file ON uploaded_bid_file.bid_id=bids.id WHERE users.use
 				<input type='hidden' name='id' value='$bids_id' />
 				<input type='hidden' name='filename' value='$contractfilename' />
 
-				<input type='submit' name='submit' value='View Contract' $disabled />
+				<input class='btn btn-default' type='submit' name='submit' value='View Contract' $disabled />
 			</form>
           </td>
           <td>
@@ -216,7 +220,7 @@ INNER JOIN uploaded_bid_file ON uploaded_bid_file.bid_id=bids.id WHERE users.use
 				<input type='hidden' name='id' value='$bids_id' />
 				<input type='hidden' name='type' value='author' />
 
-				<input type='submit' name='submit1' value='Signed Contract' $disabled />
+				<input class='btn btn-default' type='submit' name='submit1' value='Signed Contract' $disabled />
 			</form>
           </td>
         </tr>
@@ -232,7 +236,22 @@ INNER JOIN uploaded_bid_file ON uploaded_bid_file.bid_id=bids.id WHERE users.use
       </table>
     </div>
 
-		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <?php include 'template/footer.php'; ?>
+
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+ <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+-->
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
+
+		
 
 	
 </body>

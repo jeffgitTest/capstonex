@@ -62,6 +62,7 @@ if (isset($_FILES['image']))
 		$entity_elm1 = mysql_real_escape_string($entity_elm1);
 		$price = addslashes(strip_tags($_POST['price']));
 		$stock = addslashes(strip_tags($_POST['stock']));
+    $critlevel = addslashes(strip_tags($_POST['critlevel']));
 		$category= addslashes(strip_tags($_POST['category']));
 		//$category2= addslashes(strip_tags($_POST['category2']));
 		$brand= addslashes(strip_tags($_POST['brandname']));
@@ -120,6 +121,7 @@ if (isset($_FILES['image']))
 
                             $imageid = mysql_insert_id();
 
+                            mysql_query("INSERT INTO critical_level (product_id, crit_level) VALUES ('$imageid', '$critlevel')");
                             mysql_query("INSERT INTO product_history(pid,qty_added) VALUES('$imageid', '$stock')");
 
                             $image_file = $imageid.'.'.$image_ext;
@@ -195,6 +197,12 @@ if (isset($_FILES['image']))
     <div class="form-group col-lg-5">
       <label for="exampleInputPassword">Stock</label>
       <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock">
+    </div>
+     </div>
+     <div class="row col-lg-12">
+    <div class="form-group col-lg-5">
+      <label for="critlevel">Critical Level</label>
+      <input type="text" class="form-control" name="critlevel" id="critlevel" placeholder="Critical Level">
     </div>
      </div>
     <hr />

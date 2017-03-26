@@ -68,59 +68,61 @@
 	<title>Bid Portal</title>
 
 
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+-->
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.css" rel="stylesheet">
+
 </head>
 <body>
 
-	<?php include 'template/top.php'; ?>
+	<?php include 'template/style2.php'; ?>
 
-    <?php include 'template/header.php'; ?>
+    <?php include 'template/header2.php'; ?>
+
+    <div class="container">
 	
 		<form action="supplierbid.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
-		<fieldset>
-			 <div class="row cells2">
-			 	<div class="cell">
-		
-					<h4>Supplier Bid Portal</h4>
-					 <hr class="bg-magenta">
-					 		 <br/>
+	
 					
-					<div class="form-group">
-						<div class="input-control">
-							<label for="product-name">Product Name:</label>
-							<input type="text" id="product-name" required="required" class="input-control" name="name">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="details">Details:</label>
-							<input type="text" id="details" required="required" class="input-control" name="details">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="price">Price:</label>
-							<input type="text" id="price" required="required" class="input-control" name="price">
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<div class="input-control">
-							<label for="product-name">Attachment (.PDF, .DOC):</label>
-							<input type="file" id="file" accept=".pdf" name="file" class="input-control" required="required" multiple />
-						</div>
-					</div>
-					<br/>
-					<div class="form-group">
-						<input type="submit" name="submit" class="button" value="Submit">
-					</div>
+		<div class="form-group col-sm-offset-3 col-sm-6">
+			<label for="product-name">Product Name:</label>
+			<input type="text" id="product-name" required="required" class="form-control" name="name">
+		</div>
+		<br/>
+		<div class="form-group col-sm-offset-3 col-sm-6">
+			<label for="details">Details:</label>
+			<input type="text" id="details" required="required" class="form-control" name="details">
+		</div>
+		<br/>
+		<div class="form-group col-sm-offset-3 col-sm-6">
+			<label for="price">Price:</label>
+			<input type="text" id="price" required="required" class="form-control" name="price">
+		</div>
+		<br/>
+		<div class="form-group col-sm-offset-3 col-sm-6">
+			<label for="product-name">Attachment (.PDF, .DOC):</label>
+			<input type="file" id="file" accept=".pdf" name="file" class="form-control" required="required" multiple />
+		</divform					<br/>
+		<div class="form-group">
+			<input type="submit" name="submit" class="button" value="Submit">
+		</div>
 
 					
-				</div>
-			</div>
-		</fieldset>
 		</form>
+		</div>
 
 
 		<hr class="bg-magenta">
@@ -212,7 +214,20 @@ INNER JOIN uploaded_supp_bid_file ON uploaded_supp_bid_file.bid_id=bids.id WHERE
     </div>
 
 
-		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<?php include 'template/footer.php'; ?>
+
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+ <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+-->
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
 
 	
 </body>
