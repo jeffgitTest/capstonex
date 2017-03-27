@@ -69,13 +69,13 @@ if (!isset($_SESSION["manager"])) {
         </div><!-- /.row -->
 
        <div class="row">
-       		<div class="col-lg-5">
+       		<div class="col-lg-6">
           <?php 
 		  include 'include/add_product.php';
 		  ?>
           </div>
           
-          	<div class="col-lg-5">
+          	<div class="col-lg-6">
           <?php 
 		   include 'include/category.php';
 		  ?>
