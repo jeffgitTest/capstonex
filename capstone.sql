@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 03:31 AM
+-- Generation Time: Mar 27, 2017 at 04:06 AM
 -- Server version: 1.0.110
 -- PHP Version: 5.3.10
 
@@ -724,7 +724,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ext` varchar(5) NOT NULL,
   `admin` int(11) NOT NULL,
   `user_type` int(10) NOT NULL,
-  `retrieve_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
@@ -732,11 +731,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `usn`, `fname`, `lname`, `birthday`, `address`, `contact`, `email`, `password`, `activate`, `code`, `date`, `block`, `pic`, `ext`, `admin`, `user_type`, `retrieve_code`) VALUES
-(1, 'rjemindo', 'Russell James', 'Mindo', '1955-10-15', 'Antipolo', 3934875, 'rje.mindo@gmail.com', '4794b24d2508fd381736b30aa4e3a886', 1, 67591688, '2013-11-28', 0, 0, '', 0, 0, ''),
-(3, 'rr', 'Roxel', 'Mendoza', '1994-03-03', 'Tarlac', 2147483647, 'mendozalaxus@gmail.com', '3b5e13941ae2b58ed925c4b69396af02', 1, 0, '2017-03-06', 0, 0, '', 0, 3, ''),
-(4, 'jeydah1231', 'Jedidiah Ysis', 'Gutierrez', '1993-06-20', '9 Agnes St., Sta. Teresita Village Marikina', 2147483647, 'jeydahgutierrez0910@gmail.com', '16f26d92e4c585a66ed58f7bb2d0f919', 1, 97629123, '2017-02-11', 0, 0, '', 0, 0, ''),
-(6, 'rr2', 'RR', 'Mendoza', '1956-01-17', 'Mandaluyong', 2147483647, 'mendozalaxus@yahoo.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 85639105, '2017-03-09', 0, 0, '', 0, 3, '');
+INSERT INTO `users` (`id`, `usn`, `fname`, `lname`, `birthday`, `address`, `contact`, `email`, `password`, `activate`, `code`, `date`, `block`, `pic`, `ext`, `admin`, `user_type`) VALUES
+(1, 'rjemindo', 'Russell James', 'Mindo', '1955-10-15', 'Antipolo', 3934875, 'rje.mindo@gmail.com', '4794b24d2508fd381736b30aa4e3a886', 1, 67591688, '2013-11-28', 0, 0, '', 0, 0),
+(3, 'rr', 'Roxel', 'Mendoza', '1994-03-03', 'Tarlac', 2147483647, 'mendozalaxus@gmail.com', '3b5e13941ae2b58ed925c4b69396af02', 1, 0, '2017-03-06', 0, 0, '', 0, 3),
+(4, 'jeydah1231', 'Jedidiah Ysis', 'Gutierrez', '1993-06-20', '9 Agnes St., Sta. Teresita Village Marikina', 2147483647, 'jeydahgutierrez0910@gmail.com', '16f26d92e4c585a66ed58f7bb2d0f919', 1, 97629123, '2017-02-11', 0, 0, '', 0, 0),
+(6, 'rr2', 'RR', 'Mendoza', '1956-01-17', 'Mandaluyong', 2147483647, 'mendozalaxus@yahoo.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 85639105, '2017-03-09', 0, 0, '', 0, 3);
 
 -- --------------------------------------------------------
 
