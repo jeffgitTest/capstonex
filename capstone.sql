@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2017 at 06:12 PM
+-- Generation Time: Mar 27, 2017 at 03:31 AM
 -- Server version: 1.0.110
 -- PHP Version: 5.3.10
 
@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `payment_option` (
 --
 
 INSERT INTO `payment_option` (`id`, `option`, `merchant`, `base_url`, `active`) VALUES
-(1, 'https://www.sandbox.paypal.com/cgi-bin/webscr', 'fritzlicda1-facilitator-1@gmail.com', 'http://localhost/capstone/', 1);
+(1, 'https://www.sandbox.paypal.com/cgi-bin/webscr', 'fritzlicda1-facilitator-1@gmail.com', 'http://mutyaph.com/', 1);
 
 -- --------------------------------------------------------
 
