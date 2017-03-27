@@ -34,11 +34,6 @@ if(isset($_POST['update'])){
 					mysql_query("INSERT INTO product_history(pid,qty_added) VALUES('$pid','$stock')");
 				}
 
-				if($_POST['update'] == "Deduct Stock"){
-					mysql_query("UPDATE products SET stock= stock - '$stock' WHERE id='$pid'");
-					mysql_query("INSERT INTO product_history(`pid`,`qty_added`) VALUES('$pid', '-$stock')");
-				}
-
 				header("Location: edit.php?id=$pid&success&pnm=".$row['product_name']."&stock=".$stock);
 
 				
@@ -48,12 +43,28 @@ if(isset($_POST['update'])){
 		}	
 	}
 }
+
+
+if(isset($_GET['deduct'])) {
+	if(!empty($_POST){
+		$pid		=$_POST['pid'];
+		$fname 		= $_POST['fname'];
+		$lname 		= $_POST['lname'];
+		$stock   	= $_POST['qty'];
+		$receipt 	= $_POST['receipt'];
+		$emailAdd 	= $_POST['emailAdd'];
+		$cn 		= $_POST['cn'];
+	}
+	mysql_query("UPDATE products SET stock= stock - '$stock' WHERE id='$pid'");
+	mysql_query("INSERT INTO product_history(`pid`,`qty_added`) VALUES('$pid', '-$stock')");
+}
+
 if(isset($_GET['success'])){
 		echo '<div class="alert alert-success"> '.$_GET['stock'].' Products Added to '.$_GET['pnm'].' | In-Stock '.$_GET['stock'].' <a href="list.php">View </a></div>';
 	}
 
 ?>
-<form action="edit.php?id=<?php echo $targetID?>" method="post" >
+<form action="edit.php?id=<?php echo $targetID?>&deduct" method="post" >
           <h4 class="modal-title">Stock Update</h4>   
         <fieldset>
        <br />
@@ -78,22 +89,54 @@ if(isset($_GET['success'])){
         <h4 class="modal-title" id="myModalLabel">Details for deduction</h4>
       </div>
       <div class="modal-body">
-      		<form>
+      		<form action="edit.php?id=<?php echo $targetID?>&sample" method="post" >
+      		
       			
-      		</form>
     		<div class="row thead">
-               <div class="col-sm-4 col-md-auto">History ID</div>
-               <div class="col-sm-4 col-md-auto">Modified Quantity</div>
-               <div class="col-sm-4 col-md-auto">Date Modified</div>
+               <div class="col-sm-4 col-md-auto">First Name</div>
+               <div class="col-sm-4 col-md-auto">Last Name</div>
+               <div class="col-sm-4 col-md-auto">Quantity</div>
             </div>
     		<div class="row">
-    			<div class="col-sm-4 col-md-auto">yes</div>
-                <div class="col-sm-4 col-md-auto">no Quantity</div>
-                <div class="col-sm-4 col-md-auto">yes Modified</div>
+    			<div class="col-sm-4 col-md-auto">
+    				<input type="text" class="form-control"  name="fname" id="fname" placeholder="First name">
+    			</div>
+                <div class="col-sm-4 col-md-auto">
+                	<input type="text" class="form-control"  name="lname" id="lname" placeholder="Last name">
+                </div>
+                <div class="col-sm-4 col-md-auto">
+                	<input type="text" class="form-control"  name="qty" id="qty" placeholder="Items bought">
+                </div>
              </div>
+            <br>
+            <div class="row thead">
+               <div class="col-sm-4 col-md-auto">Receipt Number</div>
+               <div class="col-sm-4 col-md-auto">Email Address</div>
+               <div class="col-sm-4 col-md-auto">Contact</div>
+            </div>
+    		<div class="row">
+    			<div class="col-sm-4 col-md-auto">
+    				<input type="text" class="form-control"  name="receipt" id="receipt" placeholder="Input OR">
+    			</div>
+                <div class="col-sm-4 col-md-auto">
+                	<input type="text" class="form-control"  name="emailAdd" id="emailAdd" placeholder="EmailAdd">
+                </div>
+                <div class="col-sm-4 col-md-auto">
+                	<input type="text" class="form-control"  name="cn" id="cn" placeholder="Contact Number">
+                </div>
+             </div>
+             
     	</div>
       <div class="modal-footer">
+      	<div class="col-sm-2">
+      		<input type="hidden" required name="pid" id="pid" class="input-xlarge" value="<?php echo $targetID ?>">
+      		<!-- <input type="hidden" required name="payment_type" class="input-xlarge" value="cash">
+      		<input type="hidden" required name="payment_status" class="input-xlarge" value="Completed"> -->
+        	<input type="submit">
+        </div>
+      	</form>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
