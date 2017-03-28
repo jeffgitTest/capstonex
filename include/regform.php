@@ -21,9 +21,6 @@
 	$repeat = strip_tags($_POST['repeat']);
 	$fname = addslashes(strip_tags($_POST['fname']));
 	$lname = addslashes(strip_tags($_POST['lname']));
-	$day = $_POST['day'];
-	$month = $_POST['month'];
-	$year = $_POST['year'];
 	$address1 = addslashes(strip_tags($_POST['address']));
 	$contact = addslashes(strip_tags($_POST['contact']));
 	$date = date ("Y-m-d");
@@ -32,11 +29,16 @@
 	$secanswer = $_POST['secanswer'];
 
 	$usertype = $_POST['regtype'];
+
+	$birthday1 = strtotime($_POST['birthday']);
+
+	$birthday = date("Y-m-d", $birthday1);
+
 	
 	$errors = array();
-	if($usn&&$email&&$password&&$repeat&&$fname&&$lname&&$month&&$day&&$year&&$address1&&$contact){
+	if($usn&&$email&&$password&&$repeat&&$fname&&$lname&&$birthday&&$address1&&$contact){
 		//$birthday = date("Y-m-d", mktime(0,0,0,$year, $month, $day));
-		$birthday = date($year.'-'.$month.'-'.$day);
+		
 		//check for existence
 	    if ($password!=$repeat) ///check if pw match
 		{
@@ -62,10 +64,10 @@
 		{
 			$errors[] = '<div class="alert alert-error"><span class="icon-warning-sign"> Invalid <strong>Address</strong></div>';
 		}
-		if($year >= 1995 && $year <= 2013)
-		{
-			$errors[] = '<div class="alert alert-error"><span class="icon-warning-sign">Below 18 years old are not allowed to register</strong></div>';
-		}
+		// if($year >= 1995 && $year <= 2013)
+		// {
+		// 	$errors[] = '<div class="alert alert-error"><span class="icon-warning-sign">Below 18 years old are not allowed to register</strong></div>';
+		// }
 	/*if (!$resp->is_valid){
    		$errors[] = "<div class='alert alert-error'>The reCAPTCHA wasn't entered correctly!!</div>";
  	 }*/
@@ -157,7 +159,7 @@
 									else 
 									{
 									//register into database
-
+											
 										$register = mysql_query("INSERT INTO users VALUES ('','$usn','$fname','$lname','$birthday', '$address1', '$contact', '$email','$password', '0','$code','$date','0','','','', '$usertype')");
 
 										$user_id = mysql_insert_id();
@@ -280,44 +282,7 @@
     <br/>
     <div class="form-group col-sm-offset-3 col-sm-6">
       <label for="exampleInputPassword">Birthday</label>
-      <select class="span2" name="month" id="month">
-       	<option>- Month -</option>
-  		<option value="1" <?php if(!empty($_POST['month']) && $_POST['month'] == 1){ echo "selected";}?>>Jan</option> 
-		<option value="2" <?php if(!empty($_POST['month']) && $_POST['month']  == 2){ echo "selected";}?>>Feb</option> 
-		<option value="3" <?php if(!empty($_POST['month']) && $_POST['month']  == 3){ echo "selected";}?>>Mar</option> 
-		<option value="4" <?php if(!empty($_POST['month']) && $_POST['month']  == 4){ echo "selected";}?>>Apr</option> 
-		<option value="5" <?php if(!empty($_POST['month']) && $_POST['month']  == 5){ echo "selected";}?>>May</option> 
-		<option value="6" <?php if(!empty($_POST['month']) && $_POST['month']  == 6){ echo "selected";}?>>Jun</option> 
-		<option value="7" <?php if(!empty($_POST['month']) && $_POST['month']  == 7){ echo "selected";}?>>Jul</option> 
-		<option value="8" <?php if(!empty($_POST['month']) && $_POST['month']  == 8){ echo "selected";}?>>Aug</option> 
-		<option value="9" <?php if(!empty($_POST['month']) && $_POST['month']  == 9){ echo "selected";}?>>Sep</option> 
-		<option value="10" <?php if(!empty($_POST['month']) && $_POST['month']  == 10){ echo "selected";}?>>Oct</option> 
-		<option value="11" <?php if(!empty($_POST['month']) && $_POST['month']  == 11){ echo "selected";}?>>Nov</option> 
-		<option value="12" <?php if(!empty($_POST['month']) && $_POST['month']  == 12){ echo "selected";}?>>Dec</option>
-</select>
-<select class="span2" name="day" id="day">
-		<option>- Day -</option>
-   <?php 
-   //day 
-   		for($x=1;$x<=31;$x++){
-	   		$selected_var = '';
-	   		if($_POST['day'] == $x){ $selected_var = "selected";}
-		   	echo "<option value='".$x."'".$selected_var.">".$x."</option>";
-		}   
-   ?>	
-   	</select>
-      	<select class="span2" name="year" id="year">
-       		<option>- Year -</option>
-			   <?php 
-			   	$year_to_select = date("Y") - 18;
-				for($i=$year_to_select;$i>=1940;$i--)
-				{
-					$selected_var = '';
-					if($_POST['year'] == $i){ $selected_var = "selected";}
-					echo "<option value='".$i."'".$selected_var.">".$i."</option>";
-				}
-				?>
-		</select>
+      <input type="text" id="datepicker" class="form-control" name="birthday" placeholder="Birthday" required="required">
     </div>
      <br/>
      <br/>

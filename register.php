@@ -50,6 +50,11 @@
     <!-- Theme CSS -->
     <link href="css/new-age.css" rel="stylesheet">
 
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 </head>
  <?php include 'template/style2.php';?>
@@ -73,6 +78,14 @@
     </div><!-- /.container -->
    <hr>
       <?php include 'template/footer.php';?>
+
+
+    <script>
+      $( function() {
+          $( "#datepicker" ).datepicker();
+        } );
+    </script>
+
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
