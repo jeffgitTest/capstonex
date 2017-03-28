@@ -47,6 +47,7 @@ if(!empty($_POST)){
 			$sql = "INSERT INTO transactions (product_id_array, user_id, payer_email, first_name, last_name,month,day,year, payment_date, mc_gross, txn_id, receiver_email, payment_type, payment_status, txn_type, payer_status, address_street, address_city, address_state, address_zip, address_country, notify_version, verify_sign, payer_id, mc_currency,mc_fee,qty) VALUES('$product_id',$user_id,'$payer_email','$first_name','$last_name','$cmonth','$cday','$cyear','$payment_date2','$mc_gross','$txn_id','$receiver_email','$payment_type','$payment_status','$txn_type','$payer_status','$address_street','$address_city','$address_state','$address_zip','$address_country','$notify_version','$verify_sign','$payer_id','$mc_currency', '$mc_fee',$qty)";
 			// echo $sql;
 			mysql_query($updated_stock);
+			mysql_query("INSERT INTO product_history(`pid`,`qty_added`) VALUES('$product_id', '-$qty')");
 			mysql_query($sql) or die ("unable to execute the query");
 			// echo  $sql;
 		}
