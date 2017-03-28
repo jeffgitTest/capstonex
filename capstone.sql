@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 04:06 AM
+-- Generation Time: Mar 28, 2017 at 08:55 AM
 -- Server version: 1.0.110
 -- PHP Version: 5.3.10
 
@@ -245,15 +245,19 @@ CREATE TABLE IF NOT EXISTS `critical_level` (
   `type` varchar(10) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `critical_level`
 --
 
 INSERT INTO `critical_level` (`id`, `product_id`, `crit_level`, `type`, `created_date`) VALUES
-(1, 0, 200, 'bs', '2017-03-17 18:09:24'),
-(2, 0, 150, 'nbs', '2017-03-17 18:09:24');
+(1, 9, 200, 'bs', '2017-03-17 18:09:24'),
+(2, 10, 150, 'nbs', '2017-03-17 18:09:24'),
+(3, 11, 100, '', '2017-03-28 08:54:21'),
+(4, 12, 200, '', '2017-03-28 08:54:35'),
+(5, 13, 150, '', '2017-03-28 08:54:41'),
+(6, 14, 300, '', '2017-03-28 08:54:50');
 
 -- --------------------------------------------------------
 
@@ -385,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 INSERT INTO `products` (`id`, `author_id`, `product_name`, `price`, `details`, `stock`, `category`, `sub_category`, `status`, `timestamp`, `date_added`, `ext`) VALUES
 (9, 1, 'Essential Statistics', '550', 'There are so many books about statistics out there written both by local and foreign authors. So why come up with yet another one? This book makes use of the same format adopted for an earlier, similar book in Algebra found useful by many students and teachers. It utilizes step-by-step procedures, includes lots of exercises, and worksheets, offers opportunities for student reflection and real-world connections, highlights the use of technology-based tools, requires student projects, presents chapter highlights, and provides students preparatory materials for major examinations.. It also has materials on integrating student portfolios and learning papers into the course.', 100, '24', ' J. Gonzales, Â R. Nocon', 'active', '2017-02-11', '2017-02-11', 'png'),
-(10, 1, 'Practical Approach to Information Communication Technology (ICT)', '123', 'SAMPLE DESCRIPTION', 115, '25', 'Erika S. Farshid Mehr,  Frederic D. Yulo', 'active', '2017-02-15', '2017-02-15', 'png'),
+(10, 1, 'Practical Approach to Information Communication Technology (ICT)', '123', 'SAMPLE DESCRIPTION', 113, '25', 'Erika S. Farshid Mehr,  Frederic D. Yulo', 'active', '2017-02-15', '2017-02-15', 'png'),
 (11, 6, 'Basic Marketing', '50', 'The marketing world today is very much different from it was years ago. Today, market enterprises use modem communication technologies such as email, fax machines, Internet. World Wide Web in their marketing transactions to help making them cross boundaries with ease_ With globalization and applications of quantitative tools in marketing as the trend, modern marketing managers, marketing instructors and students have to equip themselves with modem know- how of the basic principles of marketing for them to meet the challenges in this rapid changing world of marketing.', 223, '23', ' J. Gonzales, Â R. Nocon', 'unactive', '2017-02-15', '2017-02-15', 'png'),
 (12, 6, '2222', '2222', '', 50, '', '', 'unactive', '', '0000-00-00', 'png'),
 (13, 6, '1111', '1111', '', 50, '', '', 'unactive', '', '0000-00-00', 'png'),
@@ -403,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `product_history` (
   `qty_added` int(11) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `product_history`
@@ -582,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `txn_id` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `transactions`
@@ -596,7 +600,9 @@ INSERT INTO `transactions` (`id`, `user_id`, `product_id_array`, `payer_email`, 
 (12, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 03:46:55', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1112809937', 1),
 (13, 6, '9', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-24 04:13:17', '550', '', '', 'cod', 'Completed', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '550', '2002881133', 1),
 (14, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-26 17:19:30', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1184942234', 1),
-(15, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-26 17:20:04', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1640458798', 1);
+(15, 6, '10', 'mendozalaxus@yahoo.com', 'RR', 'Mendoza', '', '', '', '2017-03-26 17:20:04', '123', '', '', 'cod', 'Pending', '', '', '', '', '', '', '', '', '', '', '', 'PHP', '123', '1640458798', 1),
+(16, 24, '10', 'capstoneTest@gmail.com', 'test', 'account', '03', '28', '2017', '2017-03-28 00:38:21', '123.00', '', 'capstoneTest-facilitator@gmail.com', 'instant', 'Pending', 'cart', 'VERIFIED', '001', 'San Jose', 'CA', '50002', 'US', '', 'UNVERSIONED', 'AFcWxV21C7fd0v3bYYYRCpSSRl31APrFq9H.GA-x-dJQfPvFvg7SuEG1', 'TUZBW7N55UVH2', 'PHP', '123.00', '6PN21286FK754025H', 1),
+(17, 24, '10', 'capstoneTest@gmail.com', 'test', 'account', '03', '28', '2017', '2017-03-28 00:47:24', '123.00', '', 'capstoneTest-facilitator@gmail.com', 'instant', 'Pending', 'cart', 'VERIFIED', '001', 'San Jose', 'CA', '50002', 'US', '', 'UNVERSIONED', 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-AEXI85qjMQniaxeF2KW1wT1q6NTe', 'TUZBW7N55UVH2', 'PHP', '123.00', '4B822268RV484673K', 1);
 
 -- --------------------------------------------------------
 
