@@ -126,10 +126,13 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=10 and stock>0 ORDER B
            <hr>
           </div>
           <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-9">
               <button onclick="window.location='excel_download.php?orders=print'" target="_blank" class="btn btn-default">Download</button>
            </div>
-           <div class="col-lg-2 pull-right">
+           <div class="col-lg-2">
+              <button onClick="window.print()" class="btn btn-warning" >Print this page</button>
+           </div>
+           <div class="col-lg-1 pull-right">
               <button onclick="window.location='reports.php'" class="btn btn-info">BACK</button>
            </div>
        </div>

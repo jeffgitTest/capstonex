@@ -81,8 +81,8 @@ if (!isset($_SESSION["manager"])) {
 
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-      <?php include 'template/sidebar.php'?>
-		<?php include 'template/top.php'?>
+      <?php include 'template/sidebar.php';?>
+		<?php include 'template/top.php';?>
       </nav>
 
       <div id="page-wrapper">
@@ -108,9 +108,15 @@ if (!isset($_SESSION["manager"])) {
            <hr>
           </div>
         </div><!-- /.row -->
-
-       <div class="row">
+        <div class="row"> 
+          <div class="col-lg-12 pull-right">
+              <button onclick="printDiv('printableArea')" class="btn btn-warning" >Print this page</button>
+          </div>
+        </div>
+       <div class="row" id="printableArea">
        <h3>SALES REPORT SUMMARY</h3>
+
+          
 	   <!------------------------------------------------------------------------------------>
 <?php
 //For end date
@@ -485,7 +491,7 @@ else
   
        <h3>SALES REPORT OVERVIEW</h3>
        <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-9">
               <button onclick="window.location='excel_download.php?sales_rep=print'" target="_blank" class="btn btn-default">Download</button>
            </div>
           <!--  <div class="col-lg-2 pull-right">
@@ -720,9 +726,18 @@ $mail->AddAddress($address, "Clothing Line Apparel");
     </div><!-- /#wrapper -->
 
     <!-- JavaScript -->
+    <script type="text/javascript">
+      function printDiv(divName) {
+         var printContents = document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+         document.body.innerHTML = printContents;
+         window.print();
+         document.body.innerHTML = originalContents;
+    }
+
+    </script>
    
     <script src="js/bootstrap.js"></script>
-
     <!-- Page Specific Plugins -->
     <script src="js/raphael-min.js"></script>
     <script src="js/morris-0.4.3.min.js"></script>

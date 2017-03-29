@@ -172,10 +172,15 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=40 and stock>0 ORDER B
           </div>
         </div><!-- /.row -->
 
-			   <div class="row">
+			   <div class="row" id="printableArea">
             <h2>Product List</h2>
             <div class="table-responsive">
-            
+            <div class="col-lg-2">
+              <button onclick="printDiv('printableArea')" class="btn btn-warning" >Print this page</button>
+           </div>
+           <div class="col-lg-1 pull-right">
+              <button onclick="window.location='reports.php'" class="btn btn-info">BACK</button>
+           </div>
             
               <table class="table table-striped">
 <thead>
@@ -379,7 +384,17 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=40 and stock>0 ORDER B
 
     </div><!-- /#wrapper -->
 
-      
+    
+    <script type="text/javascript">
+    	function printDiv(divName) {
+		     var printContents = document.getElementById(divName).innerHTML;
+		     var originalContents = document.body.innerHTML;
+		     document.body.innerHTML = printContents;
+		     window.print();
+		     document.body.innerHTML = originalContents;
+		}
+
+    </script>
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>

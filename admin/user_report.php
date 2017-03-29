@@ -511,10 +511,13 @@ $mail->AddAddress($address, "Clothing Line Apparel");
 ?>
  <h3>USERS REPORT OVERVIEW</h3>
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-9">
               <button onclick="window.location='excel_download.php?users_rep=print'" target="_blank" class="btn btn-default">Download</button>
            </div>
-           <div class="col-lg-2 pull-right">
+           <div class="col-lg-2">
+              <button onClick="window.print()" class="btn btn-warning" >Print this page</button>
+           </div>
+           <div class="col-lg-1 pull-right">
               <button onclick="window.location='reports.php'" class="btn btn-info">BACK</button>
            </div>
        </div>
