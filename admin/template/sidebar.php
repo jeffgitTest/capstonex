@@ -66,7 +66,18 @@
               </ul>
             </li>
              <li><a href="cancel.php"><i class="fa fa-edit"></i>REQUEST CANCEL ORDER</a></li>
-            <li><a href="reports.php"><i class="fa fa-edit"></i> REPORTS</a></li>
+            <!-- <li><a href="reports.php"><i class="fa fa-edit"></i> REPORTS</a></li> -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>REPORTS<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="reports.php">SALES</a></li>
+                <li><a href="orders.php">PURCHASE</a></li>
+                <li><a href="list.php">PRODUCT</a></li> 
+                <li><a href="inventory.php">INVENTORY</a></li>
+                <li><a href="user_report.php">USERS</a></li>
+              </ul>
+            </li>
+
             <li><a href="inventory.php"><i class="fa fa-font"></i>INVENTORY</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>BID MONITORING<b class="caret"></b></a>

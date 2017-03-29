@@ -20,7 +20,7 @@
 							<li class="stick bg-amber">
                                 <a class="dropdown-toggle" href="orders.php"><span class="mif-tree icon"></span>ORDERS</a>
                                 <ul class="d-menu" data-role="dropdown">
-                          <li><a href="orders.php"><span class="mif-vpn-publ icon"></span>Order List</a></li>
+                                    <li><a href="orders.php"><span class="mif-vpn-publ icon"></span>Order List</a></li>
                                     <li><a href="orders.php?status=Pending">Pending</a></li>
                                     <li><a href="orders.php?status=Completed">Completed</a></li>
                                     <li><a href="orders.php?status=Shipped">Shipped</a></li>
@@ -32,8 +32,18 @@
 							</li>
 							</li>
 							<li class="stick bg-brown">
-                            <li><a href="reports.php">REPORTS</a>
-							</li>
+                            <!-- <li><a href="reports.php">REPORTS</a>
+							</li> -->
+                            <li class="stick bg-amber">
+                                <a class="dropdown-toggle" href="#"><span class="mif-tree icon"></span>REPORTS</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="orders.php"><span class="mif-vpn-publ icon"></span>Order List</a></li>
+                                    <li><a href="orders.php?status=Pending">Pending</a></li>
+                                    <li><a href="orders.php?status=Completed">Completed</a></li>
+                                    <li><a href="orders.php?status=Shipped">Shipped</a></li>
+                                    <li><a href="orders.php?status=Cancelled">Cancelled</a></li>
+                                </ul>
+                            </li>
 							</li>
 							<li class="stick bg-cyan">
                             <li><a href="inventory.php">INVENTORY</a>

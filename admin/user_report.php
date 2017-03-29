@@ -87,7 +87,7 @@ if (!isset($_SESSION["manager"])) {
 
       <div id="page-wrapper">
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-12">
             <h1>SALES REPORT OVERVIEW <small></small></h1>
             <div class="col-lg-6 pull-right" style="margin-top:-40px;">
@@ -101,7 +101,8 @@ if (!isset($_SESSION["manager"])) {
 
            <hr>
           </div>
-        </div><!-- /.row -->
+        </div> -->
+        <!-- /.row -->
 
        <div class="row">
 	   <!------------------------------------------------------------------------------------>
