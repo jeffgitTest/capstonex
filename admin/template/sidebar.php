@@ -22,7 +22,11 @@
   if ($type == 'admin') {
 
 ?>
-
+<style>
+  .dropdown li{
+    background-color: #7a4343;
+  }
+</style>
 <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -41,7 +45,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>PRODUCTS<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="list.php">Listing</a></li>
+                <li ><a href="list.php">Listing</a></li>
                 <li><a href="add.php">Add Products</a></li>
                 <li><a href="update.php">Update Products</a></li>
               </ul>

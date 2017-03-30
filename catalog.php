@@ -61,7 +61,7 @@
             <div class="container">
                 <div class="no-overflow" style="padding-top: 40px">
 				
-				 <section class="features">
+	<section class="features">
     <div class="">
     <h3 class="text-center">ALL BOOKS</h3>
             <div class="container">

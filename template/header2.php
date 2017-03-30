@@ -15,6 +15,13 @@
         <li><a href="contact.php">CONTACT</a></li>
         <li><a href="about.php">ABOUT</a></li>
         <li><a href="help.php">HELP</a></li>
+        <?php 
+          if(isset($_SESSION['username']) && !empty($_SESSION['username'])){
+            ?>
+              <li><a href="comments.php">COMMENTS</a></li>
+            <?php
+          }
+        ?>
 
   <!--    <li>
         <form method="get" action="results.php" enctype="multipart/form-data"/>
@@ -70,9 +77,9 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
            <form method="get" action="results.php" enctype="multipart/form-data"/>
-            <input type="text" class="form-control" name="user_query" placeholder="Search a Book"/>
-            <button  name="search" data-toggle="modal">Search</button>
-        </form>
+                <input type="text" class="form-control" name="user_query" placeholder="Search a Book"/>
+                <button  name="search" data-toggle="modal">Search</button>
+            </form>
           </ul>
         </li>
       </ul>
