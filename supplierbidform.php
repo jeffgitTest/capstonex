@@ -218,7 +218,7 @@ INNER JOIN uploaded_supp_bid_file ON uploaded_supp_bid_file.bid_id=bids.id WHERE
 
     <!-- jQuery -->
     <!-- <script src="js/jquery.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/jquery-3.2.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

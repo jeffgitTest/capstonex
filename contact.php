@@ -187,9 +187,15 @@ if (isset($_POST['contactus']))
  
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
+    <!-- jQuery -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="js/jquery-3.2.0.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/modern-business.js"></script>
+    <script src="js/new-age.min.js"></script>
+
+
+    <!-- Theme JavaScript -->
     <script src="js/new-age.min.js"></script>
 
   </body>
