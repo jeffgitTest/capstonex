@@ -53,11 +53,11 @@ if (loggedin())
 
 </head>
 
-   <?php include 'template/style2.php' ?>
    <title>Contact
    </title>
-  <body>
-     <?php include 'template/header2.php' ?>
+  <body id="page-top">
+  <?php include 'template/style2.php';?>
+    <?php include 'template/header2.php';?>\
      <div class="page-content">
         <div class="">
             <div class="container">	
@@ -93,9 +93,8 @@ if (loggedin())
     </div>
 
     <div class="form-group">
-	<div class="input-control textarea full-size"
-    data-role="input" data-text-auto-resize="true">
-      <label for="exampleInputPassword">Message</label>
+	     <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+        <label for="exampleInputPassword">Message</label>
       <textarea name="message" class="form-control"></textarea>
     </div> 
     </div> 
@@ -113,7 +112,7 @@ if (loggedin())
       <div class="cell">
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.457141165559!2d120.96542181429099!3d14.686721178899072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b40da0b06065%3A0x4522e76db025b399!2sMutya+Publishing+House+Inc.!5e0!3m2!1sen!2sph!4v1486787114964" width="450" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
 
-<br /><small><a href="https://www.google.com/maps/place/Mutya+Publishing+House+Inc./@14.6867212,120.9654218,17z/data=!4m12!1m6!3m5!1s0x3397b40da0b06065:0x4522e76db025b399!2sMutya+Publishing+House+Inc.!8m2!3d14.686716!4d120.9676105!3m4!1s0x3397b40da0b06065:0x4522e76db025b399!8m2!3d14.686716!4d120.9676105?hl=en-PH"target="_blank">View Larger Map</a></small>
+<br /><small><a href="https://www.google.com/maps/place/Mutya+Publishing+House+Inc./@14.6867212,120.9654218,17z/data=!4m12!1m6!3m5!1s0x3397b40da0b06065:0x4522e76db025b399!2sMutya+Publishing+House+Inc.!8m2!3d14.686716!4d120.9676105!3m4!1s0x3397b40da0b06065:0x4522e76db025b399!8m2!3d14.686716!4d120.9676105?hl=en-PH" target="_blank">View Larger Map</a></small>
         
         
         <hr>
@@ -142,7 +141,7 @@ if (loggedin())
        
 <?php
 
-include 'include/connectdb.php';
+// include 'include/connectdb.php';
 if (isset($_POST['contactus']))
 {
 	$lname = addslashes(strip_tags($_POST['lname']));
@@ -193,6 +192,7 @@ if (isset($_POST['contactus']))
     <script src="js/jquery-3.2.0.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/modern-business.js"></script>
+    <script src="js/new-age.min.js"></script>
 
 
     <!-- Theme JavaScript -->
