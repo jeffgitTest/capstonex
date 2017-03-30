@@ -11,8 +11,8 @@ if (loggedin()){
       $fname = $row ['fname'];
 			}
     }else{	
-			// header("Location:login.php");
-			// exit();
+			header("Location:login.php");
+			exit();
 		}
 
 ?>
@@ -93,7 +93,7 @@ if (loggedin()){
                     </div>
                     <div class="grid col-md-6">
                       <?php 
-                        $sql = mysql_query("SELECT * FROM comments WHERE display= 0 order by date desc");
+                        $sql = mysql_query("SELECT * FROM comments WHERE display= 1 order by date desc");
                         $commentCount = mysql_num_rows($sql); // count the output amount
                         if ($commentCount > 0) {
                           while($row = mysql_fetch_array($sql)){
