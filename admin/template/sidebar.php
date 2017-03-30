@@ -78,7 +78,7 @@
               </ul>
             </li>
 
-            <li><a href="inventory.php"><i class="fa fa-font"></i>INVENTORY</a></li>
+            <!-- <li><a href="inventory.php"><i class="fa fa-font"></i>INVENTORY</a></li> -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>BID MONITORING<b class="caret"></b></a>
               <ul class="dropdown-menu">
