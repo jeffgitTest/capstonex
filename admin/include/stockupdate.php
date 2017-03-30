@@ -75,6 +75,24 @@ if(isset($_GET['success'])){
 		echo '<div class="alert alert-success"> '.$_GET['stock'].' Products '.$text_view.' to '.$_GET['pnm'].' | In-Stock '.$_GET['stock'].' <a href="list.php">View </a></div>';
 	}
 
+  
+  // function generate_text(){
+  //   $txn_gen = 0;
+  //   while ( $txn_gen == 0) {
+  //     $temp = mt_rand();
+  //     $new_gen = mysql_query("SELECT * FROM `transactions` WHERE txn_id='$temp'");
+  //     if(mysql_num_rows($new_gen) != 0) {
+  //       $txn_gen = $temp;
+  //       break;
+  //     }
+  //   }
+  //   return $txn_gen;
+  // }
+  // $rand_text = generate_text();
+  
+  
+
+
 ?>
 <form action="edit.php?id=<?php echo $targetID?>" method="post" >
           <h4 class="modal-title">Stock Update</h4>   
@@ -132,7 +150,7 @@ if(isset($_GET['success'])){
     				<input type="text" class="form-control" required name="paid" id="paid" placeholder="Paid Amount">
     			</div>
     			<div class="col-sm-3 col-md-auto">
-    				<input type="text" class="form-control" required name="receipt" id="receipt" placeholder="Input OR">
+    				<input type="text" class="form-control" required name="receipt" id="receipt" readonly value="<?php echo mt_rand(); ?>" placeholder="Input OR">
     			</div>
                 <div class="col-sm-3 col-md-auto">
                 	<input type="text" class="form-control"  name="emailAdd" id="emailAdd" placeholder="EmailAdd">

@@ -27,6 +27,10 @@ body {
   margin-top: 31px;
 }
 
+.mt18{
+  margin-top: 18px;
+}
+
 .mh-w{
     max-height: 46px !important;
     width: auto !important;
