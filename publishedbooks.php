@@ -93,7 +93,7 @@ AND users.user_type =2 AND users.id =" . $_SESSION['user_id']);
       </table>
     </div>
 
-		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/jquery-2.1.3.js"></script>
 
 	
 </body>

@@ -54,6 +54,7 @@
                 <li><a href="../admin/financialstatement.php">Financial Statement</a></li>
               </ul>
             </li>
+            <li><a href="adminaccountrequests.php"><i class="fa fa-font"></i>ADMIN REQUESTS</a></li>
            <li class="dropdown">
               <a href="orders.php" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>ORDERS<b class="caret"></b></a>
               <ul class="dropdown-menu">
