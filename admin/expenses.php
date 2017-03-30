@@ -47,6 +47,13 @@ if (!isset($_SESSION["manager"])) {
     <link href="css/sb-admin.css" rel="stylesheet">-->
 
     <link rel="stylesheet" href="css/morris-0.4.3.min.css">
+
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="css/morris-0.4.3.min.css">
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+   <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
   </head>
 
   <body>
@@ -127,6 +134,19 @@ if (!isset($_SESSION["manager"])) {
 
     </div>
     </body>
+
+<!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Page Specific Plugins -->
+    <script src="js/raphael-min.js"></script>
+    <script src="js/morris-0.4.3.min.js"></script>
+    <script src="js/morris/chart-data-morris.js"></script>
+    <script src="js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="js/tablesorter/tables.js"></script>
+
+    
     </html>
 
 
