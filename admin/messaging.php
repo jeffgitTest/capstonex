@@ -29,6 +29,15 @@ if (!isset($_SESSION["manager"])) {
 			//header("Location:login.php");
 		//	exit();
 			}
+
+
+			if(isset($_GET['act'])){
+				$id = $_GET['id'];
+				mysql_query("UPDATE comments SET display= 1 WHERE id='$id'");
+			}elseif(isset($_GET['deact'])){
+				$id = $_GET['id'];
+				mysql_query("UPDATE comments SET display= 0 WHERE id='$id'");
+			}
 			?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +91,8 @@ function ajax_contact(){
     <div id="wrapper">
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-      <?php include 'template/sidebar.php'?>
-		<?php include 'template/top.php'?>
+      <?php include 'template/sidebar.php';?>
+		<?php include 'template/top.php';?>
       </nav>
 
       <div id="page-wrapper">
@@ -255,12 +264,72 @@ echo '</tbody>
 </table>';
 			
 	}
-?></div>
+?>
+
+
+
+</div>
           </div>
           
           	
         </div><!-- /.row -->
-     
+     <div class="col-lg-12">
+     	<div class="row">
+     		<h1>Comments</h1>
+     	</div>
+     	<!-- table for comments -->
+		<table class="table table-striped">
+		<thead>
+		<tr>
+		<th width="10%">ID</th>
+		<th width="30%">Message</th>
+		<th width="15%">Username</th>
+		<th width="20%">Date Posted</th>
+		<th width="10%">Status</th>
+		<th width="15%">Action</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php 
+		$noComment = '';
+		function checkDisplay($check){
+			$stringVar = 'Inactive';
+			if($check == 1){
+				$stringVar = "Active";
+			}
+			return $stringVar;
+		}
+		function checkDisplayFunc($check, $id){
+			$stringVar = "<a href='messaging.php?deact&id=".$id."'>Deactivate</a>";
+			if($check == 0){
+				$stringVar = "<a href='messaging.php?act&id=".$id."'>Display</a>";
+			}
+			return $stringVar;
+		}
+		$sql = mysql_query("SELECT * FROM comments order by date desc");
+		$commentCount = mysql_num_rows($sql); // count the output amount
+		if ($commentCount > 0) {
+			while($row = mysql_fetch_array($sql)){
+		?>
+			<tr>
+				<td class="p"><?php echo $row['id']; ?></td>
+				<td class="p"><?php echo $row['message']; ?></td>
+				<td class="p"><?php echo $row['username']; ?></td>
+				<td class="p"><?php echo $row['date']; ?></td>
+				<td class="p"><?php echo checkDisplay($row['display']); ?></td>
+				<td class="p"><?php echo checkDisplayFunc($row['display'],$row['id']); ?></td>
+			<tr>
+		<?php 
+			}
+		}else{
+			$noComment = "No Comments to Display";
+		}
+		?>
+
+		</tbody>
+		</table>
+		<?php echo $noComment; ?>
+     </div>
 		
       </div><!-- /#page-wrapper -->
 

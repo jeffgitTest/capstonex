@@ -115,8 +115,8 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=40 and stock>0 ORDER B
 
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-      <?php include 'template/sidebar.php'?>
-		<?php include 'template/top.php'?>
+      <?php include 'template/sidebar.php';?>
+		<?php include 'template/top.php'; ?>
       </nav>
 
       <div id="page-wrapper">

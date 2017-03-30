@@ -45,7 +45,9 @@ if (loggedin()){
     <!-- Theme CSS -->
     <link href="css/new-age.css" rel="stylesheet">
 
-
+    <style type="text/css">
+      li { list-style: none; }
+    </style>
 </head>
 
    <title>Comments
@@ -62,7 +64,7 @@ if (loggedin()){
               if(isset($_POST['btnComment'])){
                 $message = addslashes(strip_tags($_POST['message']));
                 if(isset($message) && !empty($message)){
-                  $insert_comment = mysql_query("INSERT INTO comments(`message`, `user_id`) VALUES ('$message','$userid')");
+                  $insert_comment = mysql_query("INSERT INTO comments(`message`, `username`) VALUES ('$message','$usn')");
                   if($insert_comment){
                     echo '  <div class="alert alert-success">Thank you for your feedback! We appreciate your concern</div>';
                   }
@@ -91,12 +93,28 @@ if (loggedin()){
                     </div>
                     <div class="grid col-md-6">
                       <?php 
-                        $sql = mysql_query("SELECT * FROM products WHERE id='$pid' LIMIT 1");
-                        $productCount = mysql_num_rows($sql); // count the output amount
-                        $row = mysql_fetch_array($sql, MYSQL_ASSOC);
-                        if ($productCount > 0) {
-
+                        $sql = mysql_query("SELECT * FROM comments WHERE display= 0 order by date desc");
+                        $commentCount = mysql_num_rows($sql); // count the output amount
+                        if ($commentCount > 0) {
+                          while($row = mysql_fetch_array($sql)){
+?>
+                      <li>
+                        <div>
+                          <header><a href="#"><?php echo $row['username'];?></a> - <span>posted <?php echo date("Y-m-d H:i:s", strtotime($row['date'])); ?></span></header>
+                          <p>
+                          <?php 
+                            echo $row['message'];
+                          ?></p>
+                        </div>
+                      </li>
+<?php
+                          }
+                        }else{
+                          ?>
+                          <h1><small>No comments to display</small></h1>
+                          <?php
                         }
+
                       ?>
                     </div>
             </div>
