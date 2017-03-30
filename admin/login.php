@@ -14,7 +14,7 @@ if (isset($_POST['login']))
 	
 	if ($username&&$password)
 	{
-				$login = mysql_query("SELECT * FROM admin WHERE username='$username'");//filtering the database and compare if the username macth the variable inputed in the username field.
+				$login = mysql_query("SELECT * FROM admin WHERE username='$username' AND active=1");//filtering the database and compare if the username macth the variable inputed in the username field.
 				
 				if (mysql_num_rows($login)!=0)
 				{

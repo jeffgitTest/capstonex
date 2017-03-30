@@ -83,12 +83,13 @@ if (!isset($_SESSION["manager"])) {
     <?php include 'template/top.php';?>
     </nav>
 
-    <div class="table-responsive">
+    <div class="table-responsive" style="margin-top: 87px;">
       <table class="table table-striped">
         <thead>
     <th>Name</th>
     <th>Username</th>
     <th>Type</th>
+    <th>Action</th>
   </thead>
 
   <?php
@@ -112,7 +113,7 @@ if (!isset($_SESSION["manager"])) {
           <td>$username</td>
           <td>$type</td>
           <td>
-            <form action='suppliersignedcontract.php' method='post'>
+            <form action='adminaccountrequests.php' method='post'>
 
               <input type='hidden' name='id' value='$id' />
 

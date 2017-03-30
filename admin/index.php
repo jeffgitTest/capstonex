@@ -12,12 +12,14 @@ if (!isset($_SESSION["manager"])) {
 <?php
 		
 		$username="";
+    $name = "";
 			if (loggedin())
 			{
 				$query = mysql_query("SELECT * FROM admin WHERE username ='$_SESSION[manager]' ");
 					while ($row = mysql_fetch_assoc($query))
 					{
 						$userid = $row ['id'];
+            $name = $row['name'];
 						$username = $row ['username'];
 						$type = @$row['type'];
 					

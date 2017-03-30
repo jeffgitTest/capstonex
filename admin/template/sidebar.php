@@ -7,6 +7,7 @@
           {
             $userid = $row ['id'];
             $username = $row ['username'];
+            $name = $row ['name'];
             $type = @$row['type'];
           
           }
