@@ -36,7 +36,7 @@ if (isset($_POST['register']))
 							
 							$fname = $row ['fname'];
 							$usertype = $row['user_type'];
-							 session_start();
+							 /*session_start();*/
 							$_SESSION['username']=$username;
 							$_SESSION['user_id']=$row['id'];
 
