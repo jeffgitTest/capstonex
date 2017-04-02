@@ -80,13 +80,7 @@ if (isset($_POST['register']))
 	else
 	
 	echo '<div class="fg-amber">Please enter a username and password</div>';
-			
-			
-
 			}
-			
-			
-
 ?>
 
 			 <form role="form"method="POST" action="" >
