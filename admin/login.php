@@ -6,26 +6,25 @@ include '../include/connectdb.php';
 	$error2='';
     $error_count = 0;
 
-    if(isset($_SESSION['error_login']) && isset($_SESSION['manager']) && isset($_SESSION['error_login']) >= 3){
-        $usn = $_SESSION['manager'];
-        mysql_query("UPDATE admin SET force_forgot = 1 WHERE username='$usn'");
+    if(isset($_SESSION['error_login']) && isset($_SESSION['userid']) && $_SESSION['error_login'] >= 3){
+        $userid = $_SESSION['userid'];
+        mysql_query("UPDATE admin SET force_forgot = 1 WHERE id='$userid'");
+        //destroy session
+        session_destroy();
         header("Location:forgot.php");
         exit();
     }else if(isset($_SESSION['error_login']) && isset($_SESSION['error_login']) > 0){
         $error_count = $_SESSION['error_login'];
     }else{
-        $_SESSION['error_login'] = 0;
+        $_SESSION['error_login'] = 1;
     }
+
 if (isset($_POST['login']))
 {
 	//get data
 	$username = addslashes(strip_tags($_POST['username']));
 	$password = addslashes(strip_tags($_POST['password']));
 	$logintime = date('d/m/Y - H:ia');
-        echo $username;
-        $check_force = mysql_query("SELECT * FROM admin WHERE username='$username' AND force_forgot=1");
-        $num_rows = mysql_num_rows($check_force);
-        echo "$num_rows Rows\n";
 
 	if ($username&&$password)
 	{
@@ -36,22 +35,24 @@ if (isset($_POST['login']))
 					//code to login
 					while ($row = mysql_fetch_assoc($login))
 					{
+                        $force_forgot = $row['force_forgot'];
 						$dbpassword = $row ['password'];
 						$password = md5($password);
+                        $userid = $row['id'];
+                        $_SESSION['userid'] = $userid;
 						
-						if ($password != $dbpassword){
+						if ($force_forgot==1){
+                            header("Location:forgot.php");
+                            exit();
+                        }else if ($password != $dbpassword){
 							$error = '<div class="alert alert-error fg-crimson"><span class="mif-warning mif-ani-flash mif-ani-slow mif-2x"></span> Incorrect username or password.</div>';
 							$_SESSION['error_login'] = $error_count + 1;
-                            $_SESSION['manager']=$username;
-							}
-					
-						else
-						{
-						$_SESSION['manager']=$username;
-						$_SESSION['user_id']=$row['id'];
-								header("Location:index.php");
-								exit();
-								}
+						}else{
+						  $_SESSION['manager']=$username;
+						  $_SESSION['user_id']=$row['id'];
+                          header("Location:index.php");
+                          exit();
+						}
 					}
 				}
 				else

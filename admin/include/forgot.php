@@ -5,83 +5,79 @@ include 'connectdb.php';
 
 if (isset($_POST['btn']))
 {
-	
 	$email = $_POST['email'];
 	if($email){
-		$check = mysql_query ("SELECT * FROM users WHERE email='$email'");
-
+		$userid = 0;
+		$check = mysql_query ("SELECT * FROM admin WHERE email='$email'");
 			if (mysql_num_rows($check)!=0)
 			{
-				while ($row = mysql_fetch_assoc($check))		
-				{
+				while ($row = mysql_fetch_assoc($check)){
 				$email= $row ['email'];
+				$userid= $row ['id'];
 				$random=md5(uniqid(rand()));
 				$new=substr($random, 0,8);
 				$encryptNew = md5($new);
-				
 				}
-							error_reporting(E_STRICT);
-									date_default_timezone_set('America/Toronto');
-									require_once('class.phpmailer.php');
-									$mail= new PHPMailer();
-									$body = '<p>Forgotten password? Below are the temporary password that you can use to login in BALI Hardware<br />
-										<br />
-										Generated Password : '.$new.'<br />
-										</p>
-										you can make your desire password after you logged in on your account!.
-									';
+			
+				error_reporting(E_STRICT);
+				date_default_timezone_set('America/Toronto');
+				require_once('class.phpmailer.php');
+				$mail= new PHPMailer();
+				$body = '<p>Forgotten password? Below are the temporary password that youuse to login in BALI Hardware<br/>
+					<br/>
+					Generated Password : '.$new.'<br/>
+				
+					Please make sure you remember your new password!.
+				';
 
 
-$mail->IsSMTP(); // telling the class to use SMTP
-									$mail->Host       = "smtp.gmail.com"; // SMTP server
-									$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
+				$mail->IsSMTP(); // telling the class to use SMTP
+				$mail->Host       = "smtp.gmail.com"; // SMTP server
+				$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
                                            
-									// 1 = errors and messages
+				// 1 = errors and messages
                                            
-									// 2 = messages only
+				// 2 = messages only
 
 
-									$mail->SMTPAuth   = true;                  // enable SMTP authentication
+				$mail->SMTPAuth   = true;                  // enable SMTP authentication
 
-									$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+				$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
 
-									$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+				$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
 
-									$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+				$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
 
-$mail->Username   = "essentialitas@gmail.com";  // GMAIL username
+				$mail->Username   = "essentialitas@gmail.com";  // GMAIL username
 
-$mail->Password   = "slvmimtrvpnspeqm";            // GMAIL password
-
-
-$mail->SetFrom('essentialitas@gmail.com', 'BALI Hardware!');
+				$mail->Password   = "slvmimtrvpnspeqm";            // GMAIL password
 
 
-$mail->AddReplyTo("essentialitas@gmail.com","BALI Hardware!");
+				$mail->SetFrom('essentialitas@gmail.com', 'BALI Hardware!');
 
 
-$mail->Subject    = "Reset password confirmation";
+				$mail->AddReplyTo("essentialitas@gmail.com","BALI Hardware!");
 
 
-$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+				$mail->Subject    = "Reset password confirmation";
 
 
-$mail->MsgHTML($body);
+				$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
 
-$address = $email;
+				$mail->MsgHTML($body);
 
-$mail->AddAddress($address, "BALI Hardware!");		
-if(!$mail->Send()) 
-									{ 
-										echo "Mailer Error: " . $mail->ErrorInfo;
-									} 
-									else
-									{
-									//update database
-									$updatePw = mysql_query("UPDATE users SET password='$encryptNew' WHERE email='$email' ");
-									echo "<div class='alert alert-success'>Please check your email we send you a system generated password</div>";
-									}
+
+				$address = $email;
+				$mail->AddAddress($address, "BALI Hardware!");
+				if(!$mail->Send()){ 
+					echo "Mailer Error: " . $mail->ErrorInfo;
+				}else{
+					//update database
+					mysql_query("UPDATE admin SET password='$encryptNew' WHERE email='$email' ");
+					mysql_query("UPDATE admin SET force_forgot = 0 WHERE id='$userid'");
+					echo "<div class='alert alert-success'>Please check your email we send you a system generated password</div>";
+				}
 			}
 			else
 			{
@@ -109,30 +105,7 @@ if(!$mail->Send())
       <input type="email" required="required" name="email" id="forgotemail" class="form-control" placeholder="Email Address">
     </div>
     </div></div>
-   <div class="form-group col-sm-offset-3 col-sm-12">
-	<div class="input-control password full-size" data-role="input">
-      <label for="exampleInputEmail">Security Question</label>
-      <select class="form-control" name="secquestion">
-      	<option value="What is the first and last name of your first boyfriend or girlfriend?">What is the first and last name of your first boyfriend or girlfriend?</option>
-      	<option value="Which phone number do you remember most from your childhood?">Which phone number do you remember most from your childhood?</option>
-      	<option value="What was your favorite place to visit as a child?">What was your favorite place to visit as a child?</option>
-      	<option value="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
-      	<option value="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
-      	<option value="In what city were you born?">In what city were you born?</option>
-      	<option value="What high school did you attend?">What high school did you attend?</option>
-      	<option value="What is the name of your first school?">What is the name of your first school?</option>
-      	<option value="What is your favorite movie?">What is your favorite movie?</option>
-      	<option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-      </select>
-    </div>
-    </div>
 	<br/>
-    <div class="form-group col-sm-offset-3 col-sm-12">
-	<div class="input-control password full-size" data-role="input">
-      <label for="exampleInputEmail">Security Answer</label>
-      <input type="password" class="form-control" name="secanswer" id="repeat" placeholder="Security Answer">
-    </div>
-    </div>
 
     <br/>
 	<div class="form-group col-sm-offset-3 col-sm-12">
@@ -143,6 +116,8 @@ if(!$mail->Send())
 <br/>	
 <br/>	
   </fieldset>
+  </div>
+  </form>
 <br/>        
 <br/>        
 <br/>        
