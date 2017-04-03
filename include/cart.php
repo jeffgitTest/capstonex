@@ -155,7 +155,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 							{
 								$id=$row['id'];
 								$option=$row['option'];
-								$merchant="capstoneTest-facilitator@gmail.com";
+								$merchant="roxelrollmendoza@gmail.com";
 								$base_url=  "http://localhost/capstone";
 								$active=$row['active'];
 								

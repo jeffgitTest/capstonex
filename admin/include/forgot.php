@@ -102,14 +102,14 @@ if(!$mail->Send())
   <br>
   <div class="row cells2">
 <div class="cell">
-	<div class="form-group col-sm-offset-3 col-sm-6">
+	<div class="form-group col-sm-offset-3 col-sm-12">
      <div class="form-group">
 	 <div class="input-control text full-size" data-role="input">
       <label for="exampleInputPassword">Email</label>
       <input type="email" required="required" name="email" id="forgotemail" class="form-control" placeholder="Email Address">
     </div>
     </div></div>
-   <div class="form-group col-sm-offset-3 col-sm-6">
+   <div class="form-group col-sm-offset-3 col-sm-12">
 	<div class="input-control password full-size" data-role="input">
       <label for="exampleInputEmail">Security Question</label>
       <select class="form-control" name="secquestion">
@@ -127,7 +127,7 @@ if(!$mail->Send())
     </div>
     </div>
 	<br/>
-    <div class="form-group col-sm-offset-3 col-sm-6">
+    <div class="form-group col-sm-offset-3 col-sm-12">
 	<div class="input-control password full-size" data-role="input">
       <label for="exampleInputEmail">Security Answer</label>
       <input type="password" class="form-control" name="secanswer" id="repeat" placeholder="Security Answer">
@@ -135,7 +135,7 @@ if(!$mail->Send())
     </div>
 
     <br/>
-	<div class="form-group col-sm-offset-3 col-sm-6">
+	<div class="form-group col-sm-offset-3 col-sm-12">
 <input type="submit" name="btn" class="btn btn-warning" value="Send"> 
          Not yet a member? Register<a href="registration.php"> here </a> 
 	</div>  </div>    

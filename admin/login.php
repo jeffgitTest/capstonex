@@ -1,17 +1,32 @@
 <?php 
 include 'include/check_login.php';
 include '../include/connectdb.php';
-?>
-<?php
+
 	$error ='';
 	$error2='';
+    $error_count = 0;
+
+    if(isset($_SESSION['error_login']) && isset($_SESSION['manager']) && isset($_SESSION['error_login']) >= 3){
+        $usn = $_SESSION['manager'];
+        mysql_query("UPDATE admin SET force_forgot = 1 WHERE username='$usn'");
+        header("Location:forgot.php");
+        exit();
+    }else if(isset($_SESSION['error_login']) && isset($_SESSION['error_login']) > 0){
+        $error_count = $_SESSION['error_login'];
+    }else{
+        $_SESSION['error_login'] = 0;
+    }
 if (isset($_POST['login']))
 {
 	//get data
 	$username = addslashes(strip_tags($_POST['username']));
 	$password = addslashes(strip_tags($_POST['password']));
 	$logintime = date('d/m/Y - H:ia');
-	
+        echo $username;
+        $check_force = mysql_query("SELECT * FROM admin WHERE username='$username' AND force_forgot=1");
+        $num_rows = mysql_num_rows($check_force);
+        echo "$num_rows Rows\n";
+
 	if ($username&&$password)
 	{
 				$login = mysql_query("SELECT * FROM admin WHERE username='$username' AND active=1");//filtering the database and compare if the username macth the variable inputed in the username field.
@@ -25,8 +40,9 @@ if (isset($_POST['login']))
 						$password = md5($password);
 						
 						if ($password != $dbpassword){
-							$error = '<div class="alert alert-error fg-crimson"><span class="mif-warning mif-ani-flash mif-ani-slow mif-2x"></span> Incorrect username or password</div>';
-							    
+							$error = '<div class="alert alert-error fg-crimson"><span class="mif-warning mif-ani-flash mif-ani-slow mif-2x"></span> Incorrect username or password.</div>';
+							$_SESSION['error_login'] = $error_count + 1;
+                            $_SESSION['manager']=$username;
 							}
 					
 						else
@@ -117,7 +133,7 @@ if (isset($_POST['login']))
             <br />			
             <div class="input-control text full-size" data-role="input">
                 <label for="exampleInputPassword">Admin Name:</label>
-                <input type="text" name="username" id="username" placeholder="Adminname">
+                <input type="text" name="username" id="username" placeholder="Admin name">
                 <button class="button helper-button clear"><span class="mif-cross"></span></button>
             </div>
             <br />
@@ -132,6 +148,7 @@ if (isset($_POST['login']))
 			 <div class="clearfix"></div>
             <div class="form-actions">
 			<input type="hidden" name="save" value="contact">
+                <a href="forgot.php">Forgotten password?</a><br><br>
                 <button type="submit" value="Login" name="login" class="button primary">Submit</button>
                 <button type="button" class="button link register-btn">Register</button>
             </div>

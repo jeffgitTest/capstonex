@@ -1,15 +1,15 @@
 <?php
-		include 'include/check_login.php';
+		  include 'include/check_login.php';
 	  	include 'include/connectdb.php';
+
+      //destroy session
+      session_destroy();
 		$userid="";
 			if (loggedin())
 			{
-				$query = mysql_query("SELECT * FROM users WHERE email='$_SESSION[username]' ");
+				$query = mysql_query("SELECT * FROM admin ");
 					while ($row = mysql_fetch_assoc($query))
 					{
-						$userid = $row ['id'];
-						$email = $row ['email'];
-						$fname = $row ['fname'];
 					
 					}
 				
@@ -52,9 +52,8 @@
 
 </head>
 
-   <?php include 'template/style2.php' ?>
+   <?php include 'template/style.php'; ?>
   <body>
-     <?php include 'template/header2.php' ?>
 <div class="page-content">
             <div class="container">
                 <div class="no-overflow" style="padding-top: 20px">
@@ -72,8 +71,6 @@
     </div><!-- /.container -->
 
       <hr>
-
- <?php include 'template/footer.php'?>
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
