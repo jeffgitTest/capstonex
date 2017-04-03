@@ -113,7 +113,7 @@ if (!isset($_SESSION["manager"])) {
               <button onclick="printDiv('printableArea')" class="btn btn-warning" >Print this page</button>
           </div>
         </div>
-       <div class="row" id="printableArea">
+       <div class="row">
        <h3>SALES REPORT SUMMARY</h3>
 
           
@@ -488,7 +488,7 @@ else
 
 </table>
  </div>  
-  
+      <div id="printableArea">
        <h3>SALES REPORT OVERVIEW</h3>
        <div class="row">
             <div class="col-lg-9">
@@ -722,6 +722,7 @@ $mail->AddAddress($address, "Clothing Line Apparel");
      
 		
       </div><!-- /#page-wrapper -->
+      </div>
 
     </div><!-- /#wrapper -->
 

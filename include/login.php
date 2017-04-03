@@ -14,25 +14,27 @@ if (isset($_POST['register']))
 				{
 					//code to login
 					while ($row = mysql_fetch_assoc($login))
-					{
+					{	
+						$force_forgot = $row['force_forgot'];
+						$userid = $row['id'];
+						$_SESSION['userid'] = $userid;
 						$dbpassword = $row ['password'];
 						$password = md5($password);
 						
 						if ($password != $dbpassword){
-							echo '<div class="fg-red">Incorrect username or password</div>';
-							    
-							}
-							
-						else
-						{
+							echo '<div class="fg-red">Incorrect username or password! <br/> You only have '.$x = 3-$error_count.' attempts</div>';
+							$_SESSION['error_login'] = $error_count + 1;
+						}else if ($force_forgot==1){
+								header("Location:forgot.php");
+        						exit();
+						}else{
 							$activate = $row['activate'];
 							$usn = $row['usn'];
 							
-							if ($activate==0)
-							{
+							
+							if ($activate==0){
 								echo '<div class="fg-amber">You have not activated your account. Please check your email</div>';
-							}
-							else{
+							}else{
 							
 							$fname = $row ['fname'];
 							$usertype = $row['user_type'];

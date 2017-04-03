@@ -1,6 +1,22 @@
 <?php
 		include 'include/check_login.php';
-	  	include 'include/connectdb.php';
+	  include 'include/connectdb.php';
+
+    $error_count = 0;
+
+    if(isset($_SESSION['error_login']) && isset($_SESSION['userid']) && $_SESSION['error_login'] >= 3){
+        $userid = $_SESSION['userid'];
+        mysql_query("UPDATE users SET force_forgot = 1 WHERE id='$userid'");
+        //destroy session
+        session_destroy();
+        header("Location:forgot.php");
+        exit();
+    }else if(isset($_SESSION['error_login']) && isset($_SESSION['error_login']) > 0){
+        $error_count = $_SESSION['error_login'];
+    }else{
+        $_SESSION['error_login'] = 1;
+    }
+
 		$userid="";
 			if (loggedin())
 			{
@@ -10,7 +26,6 @@
 						$userid = $row ['id'];
 						$usn = $row ['usn'];
 						$fname = $row ['fname'];
-					
 					}
 				
 				}

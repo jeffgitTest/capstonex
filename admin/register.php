@@ -11,11 +11,12 @@ if (isset($_POST['register']))
 	$type = addslashes(strip_tags($_POST['type']));;
 	$username = addslashes(strip_tags($_POST['username']));
 	$name = addslashes(strip_tags($_POST['name']));
+    $email = addslashes(strip_tags($_POST['email']));
 	$password = md5(addslashes(strip_tags($_POST['password'])));
 	
 	if ($username&&$password&&$type&&$name)
 	{
-		mysql_query("INSERT INTO admin (name, username, password, type) VALUES ('$name', '$username', '$password', '$type')");
+		mysql_query("INSERT INTO admin (name, username, password, type,email) VALUES ('$name', '$username', '$password', '$type','$email')");
 
 		$error = '<div class="alert alert-success fg-orange"><span class="mif-pencil mif-ani-float mif-ani-fast mif-2x"> </span> Registration Success! Please wait for admin approval.</div>';
 	}
@@ -109,14 +110,21 @@ if (isset($_POST['register']))
             <br />
             <div class="input-control text full-size" data-role="input">
                 <label for="exampleInputPassword">Username:</label>
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="text" name="username" required id="username" placeholder="Username">
                 <button class="button helper-button clear"><span class="mif-cross"></span></button>
             </div>
             <br />
             <br />
             <div class="input-control password full-size" data-role="input">
-                <label for="exampleInputEmail">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <label for="exampleInputPassword">Password:</label>
+                <input type="password" name="password" required id="password" placeholder="Password">
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+            <br />
+            <br />
+            <div class="input-control password full-size" data-role="input">
+                <label for="exampleInputEmail">Email:</label>
+                <input type="email" name="email" id="email" required placeholder="Email Address">
                 <button class="button helper-button reveal"><span class="mif-looks"></span></button>
             </div>
             <br />
