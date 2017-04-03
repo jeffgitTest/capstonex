@@ -45,7 +45,7 @@ if (isset($_POST['login']))
                             header("Location:forgot.php");
                             exit();
                         }else if ($password != $dbpassword){
-							$error = '<div class="alert alert-error fg-crimson"><span class="mif-warning mif-ani-flash mif-ani-slow mif-2x"></span> Incorrect username or password.</div>';
+							$error = '<div class="alert alert-error fg-crimson"><span class="mif-warning mif-ani-flash mif-ani-slow mif-2x"></span> Incorrect username or password.<br/> You only have '.$x = 3-$error_count.' attempts</div>';
 							$_SESSION['error_login'] = $error_count + 1;
 						}else{
 						  $_SESSION['manager']=$username;

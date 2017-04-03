@@ -22,7 +22,7 @@ if (isset($_POST['register']))
 						$password = md5($password);
 						
 						if ($password != $dbpassword){
-							echo '<div class="fg-red">Incorrect username or password '.$_SESSION['error_login'].'<div>';
+							echo '<div class="fg-red">Incorrect username or password! <br/> You only have '.$x = 3-$error_count.' attempts</div>';
 							$_SESSION['error_login'] = $error_count + 1;
 						}else if ($force_forgot==1){
 								header("Location:forgot.php");

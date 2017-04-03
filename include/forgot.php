@@ -24,9 +24,11 @@ if (isset($_POST['btn']))
 									date_default_timezone_set('America/Toronto');
 									require_once('class.phpmailer.php');
 									$mail= new PHPMailer();
-									$body = '\nForgotten password? Below are the temporary password that you can use to login in BALI Hardware \n
-										\n
-										Generated Password : '.$new.'\n !.
+									$body = '<p>Forgotten password? Below are the temporary password that you can use to login in BALI Hardware<br />
+										<br />
+										Generated Password : '.$new.'<br />
+										</p>
+										you can make your desire password after you logged in on your account!.
 									';
 
 
