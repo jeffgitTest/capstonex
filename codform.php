@@ -73,7 +73,7 @@
 	
 		<form action="submitcod.php" method="post" enctype="multipart/form-data" style="margin-top: 69px;">
 
-		<input type="hidden" name="isexist" value="<?php echo $isExistingRecord; ?>">
+		<input type="hidden" name="isexist" value="<?php echo @$isExistingRecord; ?>">
 
 		<fieldset>
 			 <div class="row cells2">
@@ -81,33 +81,52 @@
 		
 
 					 		 <div class="form-group col-sm-offset-3 col-sm-6">
-						<label>Cash on delivery Forml</label>
+						<label>Cash on delivery Form</label>
 					</div>
 					
 					<div class="form-group col-sm-offset-3 col-sm-6">
 						<label for="product-name">Address:</label>
-						<input type="text" id="product-name" value="<?php echo $address; ?>" class="form-control" name="address" required="required">
+						<input type="text" id="product-name" value="<?php echo @$address; ?>" class="form-control" name="address" required="required">
 					</div>
 					<br/>
-					<div class="form-group col-sm-offset-3 col-sm-6">
+					<!-- <div class="form-group col-sm-offset-3 col-sm-6">
 						<label for="details">Province:</label>
-						<input type="text" id="details" value="<?php echo $province; ?>" class="form-control" name="province" required="required">form
+						<input type="text" id="details" value="" class="form-control" name="province" required="required">form
 					</div>
-					<br/>
+					<br/> -->
 					<div class="form-group col-sm-offset-3 col-sm-6">
-						<label for="genre">City / Municipality:</label>
-						<input type="text" id="genre" value="<?php echo $city; ?>" class="form-control" name="city" required="required">
+						<label for="genre">City / Municipality (NCR only):</label>
+						<!-- <input type="text" id="genre" value="" class="form-control" name="city" required="required"> -->
+						<select name="city" class="form-control">
+							<option value="Caloocan">Caloocan</option>
+							<option value="Las Pinas">Las Pinas</option>
+							<option value="Makati">Makati</option>
+							<option value="Malabon">Malabon</option>
+							<option value="Mandaluyong">Mandaluyong</option>
+							<option value="Manila">Manila</option>
+							<option value="Marikina">Marikina</option>
+							<option value="Muntinlupa">Muntinlupa</option>
+							<option value="Navotas">Navotas</option>
+							<option value="Paranaque">Paranaque</option>
+							<option value="Pasay">Pasay</option>
+							<option value="Pasig">Pasig</option>
+							<option value="Pateros">Pateros</option>
+							<option value="Quezon City">Quezon City</option>
+							<option value="San Juan">San Juan</option>
+							<option value="Taguig">Taguig</option>
+							<option value="Valenzuela">Valenzuela</option>
+						</select>
 					</div>
 					<br/>
 					<div class="form-group col-sm-offset-3 col-sm-6">
 						<label for="price">Zip Code:</label>
-						<input type="text" id="price" value="<?php echo $zip; ?>" class="form-control" name="zip" required="required">
+						<input type="text" id="price" value="<?php echo @$zip; ?>" class="form-control" name="zip" required="required">
 					</div>
 					
 					<br/>
 					<div class="form-group col-sm-offset-3 col-sm-6">
 						<label for="price">Mobile Number:</label>
-						<input type="text" id="price" value="<?php echo $mobile; ?>" class="form-control" name="mobile" required="required">
+						<input type="text" id="price" value="<?php echo @$mobile; ?>" class="form-control" name="mobile" required="required">
 					</div>
 					
 					<br/>

@@ -76,7 +76,69 @@ $output="";
 $success="";
 if (isset($_GET['cmd']) && $_GET['cmd'] == "emptycart") {
     unset($_SESSION["cart_array"]);
-	$success='<div class="alert alert-success"> Transaction Complete Succesfully</div>';
+	$success='<div class="alert alert-success"> Transaction Complete Succesfully, TXN No. '.$_GET['txnid'].'</div>';
+
+	require_once('include/class.phpmailer.php');
+				include("include/class.smtp.php");
+
+
+	$mail  = new PHPMailer();
+
+									
+										$body = 'Transaction Complete Succesfully, TXN No. '.$_GET['txnid'].'<br/><br/>Thank You <br/><br/>Mutya';
+									
+
+									$mail->IsSMTP(); // telling the class to use SMTP
+									$mail->Host       = "smtp.gmail.com"; // SMTP server
+									$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
+                                           
+									// 1 = errors and messages
+                                           
+									// 2 = messages only
+
+
+									$mail->SMTPAuth   = true;                  // enable SMTP authentication
+
+									$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+
+									$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+
+									$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+
+									$mail->Username   = "essentialitas@gmail.com";  // GMAIL username
+
+									$mail->Password   = "slvmimtrvpnspeqm";            // GMAIL password
+
+
+									$mail->SetFrom('essentialitas@gmail.com', 'Mutya');
+
+
+									$mail->AddReplyTo("essentialitas@gmail.com","Mutya");
+
+
+									$mail->Subject    = "Transaction Paypal Success";
+
+
+									$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+
+									$mail->MsgHTML($body);
+
+
+									// $address = $email;
+									$address = $email;
+									$mail->AddAddress($address, "Mutya");
+
+									// $mail->AddAddress($address, "M");
+
+
+					
+									if(!$mail->Send()) 
+									{ 
+										echo "Mailer Error: " . $mail->ErrorInfo;
+									} 
+
+
+
 }
 
 //paypal unset cart
@@ -156,7 +218,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 								$id=$row['id'];
 								$option=$row['option'];
 								$merchant="roxelrollmendoza@gmail.com";
-								$base_url=  "http://localhost/capstone";
+								$base_url=  "http://localhost/capstonex";
 								$active=$row['active'];
 								
 							}
@@ -208,23 +270,27 @@ $minus = 0;
 		//$minus = ($minus / $each_item['quantity']);
 	$out = $out + $minus;
 $out = $out + $price;
-$priceout = $price * $each_item['quantity'];
+$shipping = ((count($_SESSION["cart_array"]) == $i + 1) ? 200 : 0);
+
+$priceout = $price * $each_item['quantity'] + $shipping;
 
 		$pp_checkout_btn .= '<input type="hidden" name="item_name_' . $x . '" value="' . $product_name . '">
 		<input type="hidden" name="item_number_' . $x . '" value="' . $id . '">
         <input type="hidden" name="amount_' . $x . '" value="' .number_format($priceout, 2, '.', ','). '">
 		
-        <input type="hidden" name="quantity_' . $x . '" value="' . $each_item['quantity'] . '">';
+        ';
 		}
+		//<input type="hidden" name="quantity_' . $x . '" value="' . $each_item['quantity'] . '">
 		else
 		{
 $out = $out + $price;
 				$pp_checkout_btn .= '<input type="hidden" name="item_name_' . $x . '" value="' . $product_name . '">
         <input type="hidden" name="amount_' . $x . '" value="' . number_format($price, 2, '.', ',') . '">
-        <input type="hidden" name="quantity_' . $x . '" value="' . $each_item['quantity'] . '">';
+        ';
 			
 			
 		}
+		//<input type="hidden" name="quantity_' . $x . '" value="' . $each_item['quantity'] . '">
 		// Create the product array variable
 		$cquantity = $each_item['quantity'];
 $product_id_array .= "$item_id-".$each_item['quantity'].","; 
@@ -269,6 +335,7 @@ $i++;
 	<input type="hidden" name="cancel_return" value="'.$base_url.'/user.php">
 	<input type="hidden" name="lc" value="PHP">
 	<input type="hidden" name="currency_code" value="PHP">
+	<input type="hidden" name="shipping" value="200" >
 	
 	<button class="btn btn-primary pull-right" data-toggle="modal" onclick="return false;" data-target="#myModal">Choose Payment Method</button>
 	</form>

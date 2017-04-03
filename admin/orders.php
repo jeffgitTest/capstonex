@@ -146,7 +146,10 @@ $cQuery= mysql_query("SELECT * FROM products WHERE stock<=10 and stock>0 ORDER B
 $msg = "";
 if (isset($_POST['statupdate'])){
     $txn_id2 = $_POST['txnid'];
-    $status = addslashes(strip_tags($_POST['status1']));
+    
+    $trans_id = 0;
+    $paymenttype = $_POST['paymenttype'];
+    $status = ($paymenttype == 'COD') ? 'Completed' : addslashes(strip_tags(@$_POST['status1']));
     // $status2 = addslashes(strip_tags($_POST['status2']));
     $txnquery= mysql_query("SELECT * FROM transactions WHERE txn_id='$txn_id2'");
     if (mysql_num_rows($txnquery)==0){
@@ -157,8 +160,25 @@ if (isset($_POST['statupdate'])){
     else {
          while($row = mysql_fetch_array($txnquery)){
             $payment_status = $row['payment_status'];
+            $trans_id = $row['id'];
+
         }
-       
+                if ($paymenttype == 'COD') {
+                  
+                  $file_name = $_FILES['file']['name'];
+                  $file_size = $_FILES['file']['size'];
+                  $file_temp = $_FILES['file']['tmp_name'];
+
+                  $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+                  $fileName = $file_name;
+
+                  mysql_query("INSERT INTO uploaded_rec_form_file (trans_id, file_name, ext) VALUES ('$trans_id', '$fileName', '$file_ext')");
+
+                  move_uploaded_file($file_temp, 'receiveforms/' . $fileName);
+
+                }
+
                 $update = mysql_query("UPDATE transactions SET payment_status='$status' WHERE txn_id='$txn_id2'");
                 echo "<div class='alert alert-success'>Successfully Updated</div>";
 				
@@ -335,12 +355,22 @@ else{
         		<h5>Transaction ID : '.$txn_id.'></h5>
            <div class="form-group">
               <label for="exampleInputPassword">Status</label>
-             <select name="status1"><option value="'.$payment_status.'">'.$payment_status.'</option>
-                                 <option value="Pending">Pending</option>
-                                 <option value="Completed">Completed</option>
-                                 <option value="Shipped">Shipping</option>
-                                 <option value="Cancelled">Cancelled</option>
-                                 <option value="Returned">Returned</option></select>
+             ';
+
+
+             if ($payment_type == 'COD') {
+        echo 'Upload Receiving Form: <input type="file" accept=".pdf" name="file" />';
+      } else {
+        echo '<label for="exampleInputPassword">Status</label>
+     <select name="status1"><option value="'.$payment_status.'">'.$payment_status.'</option>
+                         <option value="Pending">Pending</option>
+                         <option value="Completed">Completed</option>
+                         <option value="Shipped">Shipping</option>
+                         <option value="Cancelled">Cancelled</option>
+             <option value="Returned">Returned</option></select>';
+      }
+
+              echo '
         						 
             </div>
             <div class="form-group">
@@ -368,6 +398,7 @@ else{
 	
 	else{
 		//Run a select query to get my latest 5 items
+    
 
 $sql = mysql_query("SELECT * FROM transactions ORDER BY id DESC");
 $productCount = mysql_num_rows($sql); // count the output amount
@@ -399,11 +430,18 @@ if ($productCount > 0) {
 				
 			
         $payment_type = ($row['payment_type'] == 'cod') ? 'COD' : 'Paypal';
+
+        
 				
+
 				
-				
-				
-				
+				$input = ($payment_type == 'COD') ? 'Upload Receiving Form: <input type="file" accept=".pdf" name="recform" />' : '<label for="exampleInputPassword">Status</label>
+     <select name="status1"><option value="'.$payment_status.'">'.$payment_status.'</option>
+                         <option value="Pending">Pending</option>
+                         <option value="Completed">Completed</option>
+                         <option value="Shipped">Shipping</option>
+                         <option value="Cancelled">Cancelled</option>
+             <option value="Returned">Returned</option></select>';
 				
 			 $datepayment = strftime("%b %d, %Y", strtotime($row["payment_date"]));
 			 if($payment_status=='Completed'){
@@ -415,6 +453,8 @@ if ($productCount > 0) {
 				 
 				 // $dstat=' '.$status_detail.' <a title="Update Status" href="transactions.php?transactid='.$id.'"><span class="icon-pencil"></span></a>';
 				 }
+
+         $enctype = ($payment_type == 'COD') ? 'enctype="multipart/form-data"' : '';
 			 
 		
  echo'<tr>
@@ -482,7 +522,7 @@ if ($productCount > 0) {
         <h4 class="modal-title" id="myModalLabel">Status :  '.$stat.'</h4>
       </div>
       <div class="modal-body">
-       <form action="" method="POST" >
+       <form action="orders.php" method="POST" '.$enctype.' >
           <h4 class="modal-title">Status Update</h4>
         </div>
         <div id="stock_status"></div><!--for login status output--> 
@@ -490,17 +530,40 @@ if ($productCount > 0) {
         <h5>Name : '.$firstname.' '.$lastname.'</h5>
 		<h5>Transaction ID : '.$txn_id.'></h5>
    <div class="form-group">
-      <label for="exampleInputPassword">Status</label>
+      ';
+
+      $imagepath = "";
+        $trans = mysql_query("SELECT * FROM uploaded_rec_form_file WHERE trans_id=$id");
+        $productCount = mysql_num_rows($trans);
+        while($row = mysql_fetch_array($trans)){ 
+            $imagepath = $row['file_name'];
+        }
+
+
+      if ($payment_type == 'COD' && $productCount == 0) {
+        echo '<label for="exampleInputPassword">Upload Receiving Form: </label><input type="file" accept=".jpg" name="file" >';
+      } else if ($payment_type == 'Paypal') {
+        echo '<label for="exampleInputPassword">Status</label>
      <select name="status1"><option value="'.$payment_status.'">'.$payment_status.'</option>
                          <option value="Pending">Pending</option>
                          <option value="Completed">Completed</option>
                          <option value="Shipped">Shipping</option>
                          <option value="Cancelled">Cancelled</option>
-						 <option value="Returned">Returned</option></select>
+             <option value="Returned">Returned</option></select>';
+      }
+
+      $hide = ($payment_type == 'COD') ? "" : "style='display: none;'";
+      $disabled = ($productCount > 0) ? "disabled" : "";
+
+       echo '
     </div>
     <div class="form-group">
+      <img '.$hide.' src="receiveforms/'.$imagepath.'" width="300" height="300">
+    </div>
+    <div class="form-group">
+    <input type="hidden" name="paymenttype" value="'.$payment_type.'" />
     <input name="txnid" type="hidden" value="'.$txn_id.'" />
-	<input type="submit" name="statupdate" class="btn btn-primary" value="Update"/>
+	<input type="submit" name="statupdate" '.$disabled.' class="btn btn-primary" value="Update"/>
     </div>
         </form>
 		</div>

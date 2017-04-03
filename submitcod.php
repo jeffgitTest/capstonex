@@ -67,7 +67,8 @@
      	
 
      	$codaddress = $_POST['address'];
-     	$codprovince = $_POST['province'];
+     	// $codprovince = $_POST['province'];
+     	$codprovince = "NCR";
      	$codcity = $_POST['city'];
      	$codzip = $_POST['zip'];
      	$codmobile = $_POST['mobile'];
@@ -133,8 +134,66 @@
 					 <?php 
 
 
-	echo "<label>COD order successfully sent! Please wait for the delivery.</label>";
+	echo "<label>COD order successfully sent! Please wait for the delivery. TXN No. $txn_id</label>";
+	unset($_SESSION["cart_array"]);
 
+	require_once('include/class.phpmailer.php');
+				include("include/class.smtp.php");
+
+	$mail  = new PHPMailer();
+
+									
+										$body = 'Transaction Complete Succesfully, TXN No. '.$txn_id.'<br/><br/>Thank You <br/><br/>Mutya';
+									
+
+									$mail->IsSMTP(); // telling the class to use SMTP
+									$mail->Host       = "smtp.gmail.com"; // SMTP server
+									$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
+                                           
+									// 1 = errors and messages
+                                           
+									// 2 = messages only
+
+
+									$mail->SMTPAuth   = true;                  // enable SMTP authentication
+
+									$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+
+									$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+
+									$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+
+									$mail->Username   = "essentialitas@gmail.com";  // GMAIL username
+
+									$mail->Password   = "slvmimtrvpnspeqm";            // GMAIL password
+
+
+									$mail->SetFrom('essentialitas@gmail.com', 'Mutya');
+
+
+									$mail->AddReplyTo("essentialitas@gmail.com","Mutya");
+
+
+									$mail->Subject    = "Transaction COD Success";
+
+
+									$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+
+									$mail->MsgHTML($body);
+
+
+									// $address = $email;
+									$address = $email;
+									$mail->AddAddress($address, "Mutya");
+
+									// $mail->AddAddress($address, "M");
+
+
+					
+									if(!$mail->Send()) 
+									{ 
+										echo "Mailer Error: " . $mail->ErrorInfo;
+									} 
 
 					  ?>
 

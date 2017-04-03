@@ -51,7 +51,7 @@ if(!empty($_POST)){
 			mysql_query($sql) or die ("unable to execute the query");
 			// echo  $sql;
 		}
-		header("Location: user.php?cmd=emptycart");
+		header("Location: user.php?cmd=emptycart&txnid=$txn_id");
 	}
 
 ?>
