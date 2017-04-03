@@ -8,6 +8,12 @@ if (!isset($_SESSION["manager"])) {
 	
 	
 }?>
+<style type="text/css" media="print">
+  @page { size: landscape; }
+  body, html, #wrapper {
+          width: 100%;
+      }
+</style>
 
 <?php
 		
@@ -101,7 +107,7 @@ LIMIT 5");
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="css/sb-admin.css" rel="stylesheet">-->
+    <link href="css/sb-admin.css" rel="stylesheet">
    <!-- <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="css/morris-0.4.3.min.css">
@@ -113,12 +119,12 @@ LIMIT 5");
 
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-      <?php include 'template/sidebar.php'?>
-		<?php include 'template/top.php'?>
+      <?php include 'template/sidebar.php';?>
+		<?php include 'template/top.php';?>
       </nav>
 
       <div id="page-wrapper">
-
+        <div id="printableArea">
         <div class="row">
           <div class="col-lg-12">
             <h1>Inventory <small></small></h1>
@@ -127,7 +133,7 @@ LIMIT 5");
               <button onclick="window.location='excel_download.php?inventory=print'" target="_blank" class="btn btn-default">Download</button>
            </div>
            <div class="col-lg-2">
-              <button onClick="window.print()" class="btn btn-warning" >Print this page</button>
+              <button onclick="printDiv('printableArea')" class="btn btn-warning" >Print this page</button>
            </div>
            <div class="col-lg-1 pull-right">
               <button onclick="window.location='reports.php'" class="btn btn-info">BACK</button>
@@ -318,9 +324,19 @@ else
      
 		
       </div><!-- /#page-wrapper -->
-
+      </div>
     </div><!-- /#wrapper -->
 
+    <script type="text/javascript">
+      function printDiv(divName) {
+         var printContents = document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+         document.body.innerHTML = printContents;
+         window.print();
+         document.body.innerHTML = originalContents;
+    }
+
+    </script>
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
